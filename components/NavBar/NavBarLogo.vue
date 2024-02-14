@@ -14,7 +14,7 @@
                 <circle cx="25" cy="25" r="2" fill="red" />
             </svg>
 
-            <span>
+            <span class="anton-regular">
                 Pépites
             </span>
         </NuxtLink>
