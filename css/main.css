@@ -18,3 +18,11 @@ a,
 a:visited {
     text-decoration: none;
 }
+
+
+html {
+    /* background-color: #2a2a2a; */
+
+    /* resets the default font size to +/-10px  */
+    font-size: 62.5%;
+}

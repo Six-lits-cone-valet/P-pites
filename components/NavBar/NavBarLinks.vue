@@ -2,11 +2,13 @@
 const links = [
     {
         id: 0,
-        text: "Les pépites"
+        text: "Les pépites",
+        href: "/pepites"
     },
     {
         id: 1,
-        text: "Utilisateurs"
+        text: "Utilisateurs",
+        href: "/utilisateurs"
     }
 ]
 
@@ -15,7 +17,7 @@ const links = [
 <template>
     <div class="flex">
         <li v-for="link in links" :key="link.id">
-            <NuxtLink to="/pepites">
+            <NuxtLink :to="link.href">
                 {{ link.text }}
             </NuxtLink>
         </li>
