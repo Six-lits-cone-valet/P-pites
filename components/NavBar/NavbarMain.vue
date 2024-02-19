@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <ul class="flex justifyBetween">
+        <ul class="flex justifyBetween alignCenter">
             <NavBarLogo />
 
             <NavBarLinks />
@@ -11,7 +11,8 @@
 </template>
 
 <style scoped>
-nav {
-    height: 60px;
+ul {
+    background-color: rgb(245, 245, 245);
+    padding: 10px;
 }
 </style>
