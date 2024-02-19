@@ -1,6 +1,6 @@
 <template>
-    <nav class="flex justifyBetween">
-        <ul>
+    <nav>
+        <ul class="flex justifyBetween">
             <NavBarLogo />
 
             <NavBarLinks />

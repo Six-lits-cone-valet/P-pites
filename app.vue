@@ -1,10 +1,8 @@
 <template>
-  <div id="appBox" class="r">
+  <div id="appBox">
     <NavBarMain />
 
     <NuxtPage />
-
-    <!-- <FooterMain /> -->
   </div>
 </template>
 

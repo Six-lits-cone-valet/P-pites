@@ -1,6 +1,6 @@
 <template>
-    <li>
-        <NuxtLink to="/" >
+    <li class="">
+        <NuxtLink to="/" class="flex alignCenter">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
             <!-- Pizza slice (triangle) -->
                 <polygon points="25,5 45,45 5,45" fill="orange" />

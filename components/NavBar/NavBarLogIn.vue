@@ -1,24 +1,11 @@
-<script>
-const links = [
-    {
-        id: 0,
-        text: 'Inscription',
-        href: '/inscription'
-    },
-    {
-        id: 1,
-        text: 'Connexion',
-        href: '/connexion'
-    }
-]
+<script setup>
+
 </script>
 
 <template>
-    <div>
-        <li v-for="link in links" :key="link.id">
-            <NuxtLink :to="link.href">
-                {{ link.text }}
-            </NuxtLink>
-        </li>
-    </div>
+    <li class="flex alignCenter">
+        <NuxtLink to="/connexion">
+            Connexion
+        </NuxtLink>
+    </li>
 </template>
