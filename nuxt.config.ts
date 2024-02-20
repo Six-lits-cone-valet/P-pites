@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
-    "@/css/main.css"//@=Fichier racine
-  ],
+    '@/css/main.css',
+    '@/css/utility.css'
+  ]
 })
