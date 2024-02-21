@@ -1,5 +1,5 @@
 <template>
-  <div id="appBox">
+  <div id="appBox" class="flex column justifyBetween">
     <NavBarMain />
     <NuxtPage />
     <FooterMain />
