@@ -32,8 +32,6 @@ This section will be transformed into a component in the next step.
             <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards">click to change card format</button>
             <p>{{ showLandscapeCards }}</p>
 
-            <!-- {{ pepite }} -->
-
             <CardMain :pepite="pepite" :landscape="showLandscapeCards"  />
         </section>
 <!-- 
