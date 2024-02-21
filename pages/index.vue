@@ -2,7 +2,7 @@
 import { directusGetItems } from '@/directus/directus.config.js'
 
 const requestParams = {
-    fields: '*, *.*',
+    fields: '*, *.*, business.city.name',
 }
 
 const { data: pepites } = await useAsyncData(
@@ -27,9 +27,11 @@ const showLandscapeCards = ref(false);
 TEMPORARY SECTION
 This section will be transformed into a component in the next step.
 -->
+        <!-- temporary button for testing -->
+        <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards">click to change card format</button>
+        
         <section v-for="pepite in pepites" :key="pepite.key" class="">
-            <!-- temporary button for testing -->
-            <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards">click to change card format</button>
+           
             <p>{{ showLandscapeCards }}</p>
 
             <CardMain :pepite="pepite" :landscape="showLandscapeCards"  />

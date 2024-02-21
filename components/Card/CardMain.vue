@@ -39,10 +39,6 @@ article {
     border-radius: 4px;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
     margin: auto;
-
-    /* 
-        Will need styles for portrait and landscape formats
-    */
 }
 .portraitFormat {
     width: min(300px, 100%);
