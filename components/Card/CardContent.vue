@@ -18,7 +18,7 @@ const props = defineProps({
 
             <p v-if="pepite.category">{{ pepite.category.text }}</p>
 
-            <p>{{ pepite.city.name }}</p>
+            <p> <span>{{ pepite.business.name }}</span> <span>{{ pepite.business.city.name }}</span> </p>
 
             <p v-if="landscape">{{ pepite.description }}</p>
 
