@@ -4,8 +4,10 @@
 </script>
 
 <template>
-    <main>
+    <main class="grow">
         <h1>home page</h1>
+
+        <CardPortrait />
     </main>
 </template>
 
