@@ -15,9 +15,7 @@ const { data: pepites } = await useAsyncData(
 )
 
 const showLandscapeCards = ref(false);
-
 </script>
-
 
 <template>
     <main class="grow" v-if="pepites.length">
@@ -31,9 +29,6 @@ const showLandscapeCards = ref(false);
                 <p>{{ showLandscapeCards }}</p>
     
                 <CardMain :pepite="pepite" :landscape="showLandscapeCards"  />
-            </section>
-    <!-- 
-    END OF TEMPORARY SECTION
-    -->
+            </section> 
     </main>
 </template>
