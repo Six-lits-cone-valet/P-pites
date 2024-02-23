@@ -2,14 +2,14 @@
 const links = [
     {
         id: 0,
-        text: "About",
-        href: "/about"
+        text: "A propos",
+        href: "/a-propos"
         
     },
     {
         id: 1,
         text: "Mentions légales",
-        href: "/mentionslegales"
+        href: "/mentions-legales"
     },
     {
         id: 2,

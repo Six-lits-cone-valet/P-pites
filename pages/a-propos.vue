@@ -1,5 +1,5 @@
 <template>
     <main class="r">
-        <h1>about page</h1>
+        <h1>A propos</h1>
     </main>
 </template>
