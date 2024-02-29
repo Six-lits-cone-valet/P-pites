@@ -2,10 +2,7 @@
     <nav>
         <ul class="flex justifyBetween alignCenter">
             <NavBarLogo />
-
             <NavBarLinks />
-
-            <NavBarLogIn />
         </ul>
     </nav>
 </template>

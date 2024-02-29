@@ -7,11 +7,10 @@ const links = [
     },
     {
         id: 1,
-        text: "Utilisateurs",
-        href: "/utilisateurs"
-    }
+        text: "Accueil",
+        href: "/index"
+    },
 ]
-
 </script>
 
 <template>
