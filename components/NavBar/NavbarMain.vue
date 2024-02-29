@@ -2,6 +2,7 @@
     <nav>
         <ul class="flex justifyBetween alignCenter">
             <NavBarLogo />
+            
             <NavBarLinks />
         </ul>
     </nav>
