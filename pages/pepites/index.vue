@@ -5,8 +5,6 @@
 
 <template>
     <h1>Les pépites</h1>
-
-    <SectionCardViewer />
 </template>
 
 <style scoped>

@@ -4,5 +4,6 @@ export default defineNuxtConfig({
   css: [
     '@/css/main.css',
     '@/css/utility.css'
-  ]
+  ],
+  ssr: false
 })
