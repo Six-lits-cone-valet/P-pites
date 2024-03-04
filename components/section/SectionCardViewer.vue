@@ -25,11 +25,10 @@ const showLandscapeCards = ref(false);
 <template>
     <main class="grow" v-if="items.length">
         <!-- temporary button for testing -->
-        <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards">
+        <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards" v-if="props.collection === 'Pepites'">
             click to change card format
         </button>
-                    
-        <section :class="{ 'landscape' : showLandscapeCards }">
+        <section :class="{ 'landscape' : showLandscapeCards && props.collection === 'Pepites' }"> 
             <CardMain
                 v-for="item in items" :key="item.key" 
                 :item="item" 
@@ -41,7 +40,7 @@ const showLandscapeCards = ref(false);
         </section> 
     </main>
 </template>
-
+       
 <style scoped>
 section {
     overflow-X: scroll;
