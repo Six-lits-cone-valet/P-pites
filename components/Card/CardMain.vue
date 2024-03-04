@@ -8,7 +8,7 @@ All the hover effects are defined here, so they are applied to both card sizes.
 import { directusBaseUrl } from '@/directus/directus.config.js'
 
 const props = defineProps({
-    pepite: Object,
+    item: Object,
     landscape: {
         type: Boolean,
         default: false
@@ -22,13 +22,15 @@ const props = defineProps({
         <div class="frame">
             <picture>
                 <!-- should be a .webp format -->
-                <source :srcset="`${directusBaseUrl}assets/${pepite.image}`">
+                <source :srcset="`${directusBaseUrl}assets/${item.image}`">
                 <!-- should be a .jpg format -->
-                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${pepite.image}`" alt="">
+                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}`" alt="">
             </picture>
         </div>
         
-        <CardContent :pepite="pepite" :landscape="landscape" />
+        <slot>
+
+        </slot>
     </article>
 </template>
 

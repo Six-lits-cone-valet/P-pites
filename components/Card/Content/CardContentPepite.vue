@@ -1,8 +1,6 @@
 <script setup>
-
-
 const props = defineProps({
-    pepite: Object,
+    item: Object,
     landscape: {
         type: Boolean,
         default: false
@@ -12,18 +10,18 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="contentBox flex grow justifyEnd" :class="[landscape ? landscapeFormat : portraitFormat]" v-if="pepite">
+    <div class="contentBox flex grow justifyEnd" :class="[landscape ? landscapeFormat : portraitFormat]" v-if="item">
         <div class="grow flex column justifyBetween">
-            <h1>{{ pepite.title }}</h1>
+            <h1>{{ item.title }}</h1>
 
-            <p v-if="pepite.category">{{ pepite.category.text }}</p>
+            <p v-if="item.category">{{ item.category.text }}</p>
 
-            <p> <span>{{ pepite.business.name }}</span> <span>{{ pepite.business.city.name }}</span> </p>
+            <p> <span>{{ item.business.name }}</span> <span>{{ item.business.city.name }}</span> </p>
 
-            <p v-if="landscape">{{ pepite.description }}</p>
+            <p v-if="landscape">{{ item.description }}</p>
 
             <div class="flex gap5">
-                <p v-for="option in pepite.options" :key="option.id">{{ option }}</p>
+                <p v-for="option in item.options" :key="option.id">{{ option }}</p>
             </div>
         </div>
 

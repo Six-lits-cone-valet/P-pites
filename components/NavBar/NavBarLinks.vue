@@ -5,11 +5,11 @@ const links = [
         text: "Les pépites",
         href: "/pepites"
     },
-    {
+    /*{
         id: 1,
         text: "Accueil",
-        href: "/index"
-    },
+        href: "/"pepites.com est la page d'accueil, donc rien après, pas index
+    },*/
 ]
 </script>
 
