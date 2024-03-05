@@ -1,12 +1,15 @@
 <script setup>
-import { CardContentPepite } from '#components';
-import { CardContentCity } from '#components';
+import { CardContentPepite, CardContentCity } from '#components';
+
 const requestParamsPepites = {
-    fields: '*.*.*'
-}
+    fields: ['title', 'description', 'image', 'date_created'],
+    sort: '-date_created',
+    limit: 1,
+};
+
 const requestParamsCities = {
-    fields: '*.*.*' 
-}
+    fields: ['title', 'description', 'image'],
+};
 </script>
 
 <template>
@@ -21,7 +24,6 @@ const requestParamsCities = {
         collection="Cities" 
         :requestParams="requestParamsCities" 
         :contentComponent="CardContentCity"/>
-
 </template>
 
 <style>

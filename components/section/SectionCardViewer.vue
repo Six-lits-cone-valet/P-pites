@@ -1,43 +1,63 @@
 <script setup>
-
-
-import { directusGetItems } from '@/directus/directus.config.js'
+import { directusGetItems } from '@/directus/directus.config.js';
 
 const props = defineProps({
     collection: String,
     requestParams: Object,
-    contentComponent: Object
-})
+    contentComponent: Object,
+});
 
-const { data: items } = await useAsyncData(
+const { data: items } = useAsyncData(
     `items-${props.collection}`,
     async () => {
-        const items = await directusGetItems(props.collection, props.requestParams);
-
-        return items;
+        return directusGetItems(props.collection, props.requestParams);
     }
-)
+);
 
-const showLandscapeCards = ref(false);
+const showLandscapeCards = false;
 
+const getLastPepite = (pepites) => {
+    if (pepites && pepites.length > 0) {
+        return pepites[0];
+    }
+    return null; 
+};
+
+let lastPepite = null;
+
+const { data: pepites } = useAsyncData('Pepites', async () => {
+    const pepitesData = await directusGetItems('Pepites', {
+        fields: ['title', 'description', 'image', 'date_created'],
+        sort: '-date_created',
+        limit: 1
+    });
+    lastPepite = getLastPepite(pepitesData);
+});
 </script>
 
 <template>
-    <main class="grow" v-if="items.length">
-        <!-- temporary button for testing -->
-        <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards" v-if="props.collection === 'Pepites'">
-            click to change card format
-        </button>
-        <section :class="{ 'landscape' : showLandscapeCards && props.collection === 'Pepites' }"> 
-            <CardMain
-                v-for="item in items" :key="item.key" 
-                :item="item" 
+    <main class="grow">
+        <div v-if="props.collection === 'Pepites' && !showLandscapeCards && lastPepite">
+            <CardMain 
+                :item="lastPepite"
                 :landscape="showLandscapeCards"
-                class="card">
+                class="card"
+            />
+        </div>
 
-                <component :is="contentComponent" :item="item" :landscape="showLandscapeCards" />
-            </CardMain>
-        </section> 
+        <div v-else-if="items && items.length > 0">
+            <section :class="{ 'landscape' : showLandscapeCards }"> 
+                <CardMain
+                    v-for="item in items" 
+                    :key="item.key" 
+                    :item="item" 
+                    :landscape="showLandscapeCards"
+                    class="card">
+
+                    <component :is="contentComponent" :item="item" :landscape="showLandscapeCards" />
+                </CardMain>
+            </section>
+        </div>
     </main>
 </template>
        
@@ -55,4 +75,3 @@ section.landscape {
     flex-shrink: 0;
 }
 </style>
-
