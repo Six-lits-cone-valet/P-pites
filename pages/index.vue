@@ -5,8 +5,11 @@ const requestParamsPepites = {
     fields: '*.*.*'
 }
 const requestParamsCities = {
-    fields: '*.*.*' 
+    fields: [
+        '*.*'
+    ]
 }
+
 </script>
 
 <template>
