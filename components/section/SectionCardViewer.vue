@@ -2,74 +2,50 @@
 import { directusGetItems } from '@/directus/directus.config.js';
 
 const props = defineProps({
+    requestId: String,
     collection: String,
     requestParams: Object,
     contentComponent: Object,
+    landscape: {
+        type: Boolean,
+        default: false
+    }
 });
 
-const { data: items } = useAsyncData(
-    `items-${props.collection}`,
+const { data: items } = await useAsyncData(
+    props.requestId,
     async () => {
-        return directusGetItems(props.collection, props.requestParams);
-    }
+        const items = await directusGetItems(props.collection, props.requestParams);
+
+        return items;
+    },
+    { server: true }
 );
 
-const showLandscapeCards = false;
-
-const getLastPepite = (pepites) => {
-    if (pepites && pepites.length > 0) {
-        return pepites[0];
-    }
-    return null; 
-};
-
-let lastPepite = null;
-
-const { data: pepites } = useAsyncData('Pepites', async () => {
-    const pepitesData = await directusGetItems('Pepites', {
-        fields: ['title', 'description', 'image', 'date_created'],
-        sort: '-date_created',
-        limit: 1
-    });
-    lastPepite = getLastPepite(pepitesData);
-});
 </script>
 
 <template>
     <main class="grow">
-        <div v-if="props.collection === 'Pepites' && !showLandscapeCards && lastPepite">
-            <CardMain 
-                :item="lastPepite"
-                :landscape="showLandscapeCards"
-                class="card"
-            />
-        </div>
+        <div v-if="items">
+            <section :class="{ 'landscape' : landscape }">
+                <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape" class="card">
 
-        <div v-else-if="items && items.length > 0">
-            <section :class="{ 'landscape' : showLandscapeCards }"> 
-                <CardMain
-                    v-for="item in items" 
-                    :key="item.key" 
-                    :item="item" 
-                    :landscape="showLandscapeCards"
-                    class="card">
-
-                    <component :is="contentComponent" :item="item" :landscape="showLandscapeCards" />
+                    <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
                 </CardMain>
             </section>
         </div>
     </main>
 </template>
-       
+
 <style scoped>
 section {
-    overflow-X: scroll;
+    overflow-x: scroll;
     display: flex;
     gap: 20px;
 }
 section.landscape {
     flex-direction: column;
-    overflow-X: hidden;
+    overflow-x: hidden;
 }
 .card {
     flex-shrink: 0;
