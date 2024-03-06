@@ -1,5 +1,6 @@
 <script setup>
 import { directusGetItems } from '@/directus/directus.config.js';
+import { ref } from 'vue';
 
 const props = defineProps({
     collection: String,
@@ -14,7 +15,7 @@ const { data: items } = useAsyncData(
     }
 );
 
-const showLandscapeCards = false;
+const showLandscapeCards = ref(false);
 
 const getLastPepite = (pepites) => {
     if (pepites && pepites.length > 0) {
@@ -23,7 +24,7 @@ const getLastPepite = (pepites) => {
     return null; 
 };
 
-let lastPepite = null;
+const lastPepite = ref(null);
 
 const { data: pepites } = useAsyncData('Pepites', async () => {
     const pepitesData = await directusGetItems('Pepites', {
@@ -31,15 +32,15 @@ const { data: pepites } = useAsyncData('Pepites', async () => {
         sort: '-date_created',
         limit: 1
     });
-    lastPepite = getLastPepite(pepitesData);
+    lastPepite.value = getLastPepite(pepitesData);
 });
 </script>
 
 <template>
     <main class="grow">
-        <div v-if="props.collection === 'Pepites' && !showLandscapeCards && lastPepite">
+        <div v-if="props.collection === 'Pepites' && !showLandscapeCards && lastPepite.value">
             <CardMain 
-                :item="lastPepite"
+                :item="lastPepite.value"
                 :landscape="showLandscapeCards"
                 class="card"
             />
