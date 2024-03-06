@@ -1,7 +1,7 @@
 <!-- 
-Container for both card sizes.  
-Here are defined the global card styles like border, border-radius and box-shadow.
-All the hover effects are defined here, so they are applied to both card sizes.
+    Container for both card sizes.  
+    Here are defined the global card styles like border, border-radius and box-shadow.
+    All the hover effects are defined here, so they are applied to both card sizes.
  -->
 
 <script setup>
@@ -13,12 +13,11 @@ const props = defineProps({
         type: Boolean,
         default: false
     }
-
 })
 </script>
 
 <template>
-    <article :class="[landscape ? 'landscapeFormat' : 'portraitFormat']">
+    <article :class="[landscape ? 'landscape' : 'portrait']">
         <div class="frame">
             <picture>
                 <!-- should be a .webp format -->
@@ -27,7 +26,7 @@ const props = defineProps({
                 <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}`" alt="">
             </picture>
         </div>
-        
+
         <slot>
 
         </slot>
@@ -42,21 +41,21 @@ article {
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
     margin: auto;
 }
-.portraitFormat {
+.portrait {
     width: min(300px, 100%);
 }
-.landscapeFormat {
+.landscape {
     width: 100%;
     display: flex;
 }
 .frame {
     flex-shrink: 0;
 }
-.portraitFormat .frame {
+.portrait .frame {
     width: 100%;
     height: 200px;
 }
-.landscapeFormat .frame{
+.landscape .frame{
     width: min(300px, 100%);
      height: 200px;
 }

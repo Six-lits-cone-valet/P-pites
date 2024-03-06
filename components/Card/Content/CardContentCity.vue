@@ -12,9 +12,13 @@ const props = defineProps({
 <template>
     <div class="contentBox flex grow justifyEnd">
       <div class="grow flex column justifyBetween">
-        <h1>{{ item.name }}</h1>
+        <!-- <h1>{{ item.name }}</h1> -->
   
         <p>{{ item.description }}</p>
+        <p>{{ item.population }}</p>
+        <p>{{ item.specialites }}</p>
+        <p>{{ item.produitsLocaux }}</p>
+        <p>{{ item.evenementsCulinaires }}</p>
   
         <div class="flex gap5">
           <p v-for="option in item.options" :key="option.id">{{ option }}</p>

@@ -1,58 +1,53 @@
 <script setup>
-
-
-import { directusGetItems } from '@/directus/directus.config.js'
+import { directusGetItems } from '@/directus/directus.config.js';
 
 const props = defineProps({
+    requestId: String,
     collection: String,
     requestParams: Object,
-    contentComponent: Object
-})
+    contentComponent: Object,
+    landscape: {
+        type: Boolean,
+        default: false
+    }
+});
 
 const { data: items } = await useAsyncData(
-    `items-${props.collection}`,
+    props.requestId,
     async () => {
         const items = await directusGetItems(props.collection, props.requestParams);
 
         return items;
-    }
-)
-
-const showLandscapeCards = ref(false);
+    },
+    { server: true }
+);
 
 </script>
 
 <template>
-    <main class="grow" v-if="items.length">
-        <!-- temporary button for testing -->
-        <button @click.stop.prevent="showLandscapeCards = !showLandscapeCards" v-if="props.collection === 'Pepites'">
-            click to change card format
-        </button>
-        <section :class="{ 'landscape' : showLandscapeCards && props.collection === 'Pepites' }"> 
-            <CardMain
-                v-for="item in items" :key="item.key" 
-                :item="item" 
-                :landscape="showLandscapeCards"
-                class="card">
+    <main class="grow">
+        <div v-if="items">
+            <section :class="{ 'landscape' : landscape }">
+                <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape" class="card">
 
-                <component :is="contentComponent" :item="item" :landscape="showLandscapeCards" />
-            </CardMain>
-        </section> 
+                    <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
+                </CardMain>
+            </section>
+        </div>
     </main>
 </template>
-       
+
 <style scoped>
 section {
-    overflow-X: scroll;
+    overflow-x: scroll;
     display: flex;
     gap: 20px;
 }
 section.landscape {
     flex-direction: column;
-    overflow-X: hidden;
+    overflow-x: hidden;
 }
 .card {
     flex-shrink: 0;
 }
 </style>
-
