@@ -1,5 +1,5 @@
 <script setup>
-import { CardContentPepite, CardContentCity } from '#components';
+import { CardContentPepite, CardContentCity, CardContentCategories } from '#components';
 
 const requestParamsLastPepite = {
     fields: [
@@ -60,12 +60,14 @@ const requestParamsCategories = {
         :contentComponent="CardContentCity"
     />
 
+    <!-- les categories -->
     <SectionCardViewer 
     requestId="allCategories"
     collection="Categories" 
     :requestParams="requestParamsCategories" 
+    :contentComponent="CardContentCategories"
     
-/>
+    />
 </template>
 
 <style scoped>
