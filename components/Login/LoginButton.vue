@@ -1,27 +1,27 @@
 <template>
-    <button @click="currentUser ? deconnectUser() : $router.push('/connexion')">
-      {{ currentUser ? 'Déconnexion' : 'Connexion' }}
-    </button>
+    <router-link :to="currentUser ? '/deconnexion' : '/connexion'">
+      <button @click="currentUser ? deconnectUser() : null">
+        {{ currentUser ? 'Déconnexion' : 'Connexion' }}
+      </button>
+    </router-link>
   </template>
   
-  <script>
-  export default {
-    props: {
-      currentUser: {
-        type: Object, 
-        default: null
-      }
-    },
-    methods: {
-      deconnectUser() {
-        console.log("Déconnexion de l'utilisateur");
-        this.currentUser = null;
-      }
+  <script setup>
+  import { ref } from 'vue';
+  
+  const props = {
+    currentUser: {
+      type: Object,
+      default: null
     }
-  }
+  };
+  
+  const deconnectUser = () => {
+    console.log("Déconnexion de l'utilisateur");
+    currentUser.value = null;
+  };
   </script>
   
   <style scoped>
-  
   </style>
   
