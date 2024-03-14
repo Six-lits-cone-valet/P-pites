@@ -4,9 +4,26 @@
             <NavBarLogo />
             
             <NavBarLinks />
+
+            <LoginButton :currentUser="currentUser" />
         </ul>
     </nav>
 </template>
+
+<script>
+import LoginButton from '@/components/Login/LoginButton.vue'; 
+
+export default {
+  components: {
+    LoginButton
+  },
+  data() {
+    return {
+      currentUser: null 
+    }
+  }
+}
+</script>
 
 <style scoped>
 ul {
