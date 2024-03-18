@@ -10,19 +10,9 @@
     </nav>
 </template>
 
-<script>
+<script setup>
 import LoginButton from '@/components/Login/LoginButton.vue'; 
-
-export default {
-  components: {
-    LoginButton
-  },
-  data() {
-    return {
-      currentUser: null 
-    }
-  }
-}
+let currentUser = null;
 </script>
 
 <style scoped>
