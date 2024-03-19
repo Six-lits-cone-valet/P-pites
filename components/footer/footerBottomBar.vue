@@ -10,7 +10,7 @@
 <style scoped>
 nav {
     padding: 5px;
-    background-color: #e1e1e1;
+    /*background-color: #e1e1e1;*/
     
 }
 
@@ -21,6 +21,6 @@ ul {
 }
 
 li {
-    color: #0000008e;
+    /*color: #0000008e;*/
 }
 </style>
