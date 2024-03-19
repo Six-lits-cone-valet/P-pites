@@ -1,6 +1,4 @@
 <script setup>
-
-
 import { directusGetItems } from '@/directus/directus.config.js'
 
 const props = defineProps({
