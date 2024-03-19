@@ -1,27 +1,30 @@
+<script setup>
+const appState = useAppState();
+
+const props = defineProps({
+  currentUser: Object
+})
+
+async function deconnectUser() {
+  appState.value.userLoggedIn = false;
+}
+
+</script>
+
 <template>
-    <router-link :to="currentUser ? '/deconnexion' : '/connexion'">
-      <button @click="currentUser ? deconnectUser() : null">
-        {{ currentUser ? 'Déconnexion' : 'Connexion' }}
-      </button>
-    </router-link>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  
-  const props = {
-    currentUser: {
-      type: Object,
-      default: null
-    }
-  };
-  
-  const deconnectUser = () => {
-    console.log("Déconnexion de l'utilisateur");
-    currentUser.value = null;
-  };
-  </script>
+  <div class="button">
+    <NuxtLink to="/connexion" v-if="!appState.userLoggedIn">
+      se connecter
+    </NuxtLink>
+
+    <button @click="deconnectUser" v-else>
+      déconnexion
+    </button>
+  </div>
+
+</template>
   
   <style scoped>
+
   </style>
   
