@@ -10,13 +10,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="contentBox flex grow justifyEnd" :class="[landscape ? landscapeFormat : portraitFormat]" v-if="item">
+    <div class="contentBox flex grow justifyEnd" :class="[landscape ? 'landscape' : 'portrait']" v-if="item">
         <div class="grow flex column justifyBetween">
             <h1>{{ item.title }}</h1>
 
             <p v-if="item.category">{{ item.category.text }}</p>
 
-            <p> <span>{{ item.business.name }}</span> <span>{{ item.business.city.name }}</span> </p>
+            <!-- <p> <span>{{ item.business.name }}</span> <span>{{ item.business.city.name }}</span> </p> -->
 
             <p v-if="landscape">{{ item.description }}</p>
 

@@ -1,13 +1,32 @@
 <script setup>
-import { CardContentPepite } from '#components';
-import { CardContentCity } from '#components';
-const requestParamsPepites = {
-    fields: '*.*.*'
+import { CardContentPepite, CardContentCity, CardContentCategories } from '#components';
+
+const requestParamsLastPepite = {
+    fields: [
+        '*', 'category.text'
+    ],
+    // sort: '-date_created',
+    limit: 1,
 }
+
+const requestParamsPepites = {
+    fields: [
+        '*', 'category.text'
+    ],
+    sort: '-date_created',
+    limit: 4,
+}
+
 const requestParamsCities = {
     fields: [
-        '*.*'
-    ]
+        '*'
+    ],
+}
+
+const requestParamsCategories = {
+    fields: [
+        '*'
+    ],
 }
 
 </script>
@@ -15,21 +34,41 @@ const requestParamsCities = {
 <template>
     <h1>Accueil</h1>
 
+    <!-- la dernière pépite -->
     <SectionCardViewer 
+        requestId="lastPepite"
+        class="r"
+        collection="Pepites" 
+        :requestParams="requestParamsLastPepite" 
+        :contentComponent="CardContentPepite"
+        landscape
+    />
+
+    <!-- toutes les pépites -->
+    <SectionCardViewer 
+        requestId="allPepites"
         collection="Pepites" 
         :requestParams="requestParamsPepites" 
-        :contentComponent="CardContentPepite"/>
+        :contentComponent="CardContentPepite"
+    />
 
+    <!-- liste des villes -->
     <SectionCardViewer 
+        requestId="allCities"
         collection="Cities" 
         :requestParams="requestParamsCities" 
-        :contentComponent="CardContentCity"/>
+        :contentComponent="CardContentCity"
+    />
 
+    <!-- les categories -->
+    <SectionCardViewer 
+    requestId="allCategories"
+    collection="Categories" 
+    :requestParams="requestParamsCategories" 
+    :contentComponent="CardContentCategories"
+    
+    />
 </template>
-
-<style>
-
-</style>
 
 <style scoped>
 

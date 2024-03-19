@@ -1,9 +1,17 @@
+<script setup>
+let currentUser = ref(null);
+
+
+</script>
+
 <template>
     <nav>
         <ul class="flex justifyBetween alignCenter">
             <NavBarLogo />
-            
+
             <NavBarLinks />
+
+            <LoginButton :currentUser="currentUser" />
         </ul>
     </nav>
 </template>
