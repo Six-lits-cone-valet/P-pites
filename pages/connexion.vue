@@ -1,14 +1,18 @@
+<script setup>
+const appState = useAppState();
 
-  <script setup>
-let currentUser = null;
-function loginUser() {
-    currentUser = response.data.user;
+function handleConnection() {
+  appState.value.userLoggedIn = true;
 }
-  </script>
+</script>
 
 <template>
     <div>
       <h1>Page de connexion</h1>
+
+      <button @click="handleConnection">
+        connexion
+      </button>
     </div>
   </template>
   
