@@ -42,10 +42,12 @@ section {
     overflow-x: scroll;
     display: flex;
     gap: 20px;
+    margin-bottom: min(50px, 4vw);
 }
 section.landscape {
     flex-direction: column;
     overflow-x: hidden;
+    margin-bottom: min(50px, 4vw);
 }
 .card {
     flex-shrink: 0;

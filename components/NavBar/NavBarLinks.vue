@@ -2,14 +2,19 @@
 const links = [
     {
         id: 0,
-        text: "Les pépites",
+        text: "Nos pépites",
         href: "/pepites"
     },
-    /*{
+    {
         id: 1,
-        text: "Accueil",
-        href: "/"pepites.com est la page d'accueil, donc rien après, pas index
-    },*/
+        text: "Nos créateurs",
+        href: "/createurs"
+    },
+    {
+        id: 2,
+        text: "Votre compte",
+        href: "/UsersCompte"
+    },
 ]
 </script>
 

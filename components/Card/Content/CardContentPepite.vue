@@ -42,11 +42,13 @@ const props = defineProps({
 
 .iconBox {
     padding: 5px;
+    
 }
 .iconExample {
     width: 20px;
     height: 20px;
     background-color: black;
     border-radius: 50%;
+    
 }
 </style>

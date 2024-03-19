@@ -32,12 +32,11 @@ const requestParamsCategories = {
 </script>
 
 <template>
-    <h1>Accueil</h1>
+    <!--<h1>Accueil</h1>-->
 
     <!-- la dernière pépite -->
     <SectionCardViewer 
         requestId="lastPepite"
-        class="r"
         collection="Pepites" 
         :requestParams="requestParamsLastPepite" 
         :contentComponent="CardContentPepite"
