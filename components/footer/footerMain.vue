@@ -1,8 +1,7 @@
-
-
 <template>
     <footer>
         <FooterMiddleLinks />
+        
         <FooterBottomBar />
     </footer>
 </template>
