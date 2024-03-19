@@ -17,6 +17,11 @@ The font Anton is only used for the logo.  So, we can pass a parameter 'text' wi
 a,
 a:visited {
     text-decoration: none;
+    color: var(--gray-light);
+}
+
+a:hover {
+    color: var(--danger);
 }
 
 ul {

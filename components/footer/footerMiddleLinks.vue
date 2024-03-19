@@ -56,8 +56,8 @@ const links = [
 <style scoped>
 ul{
     padding:  40px 20px;
-    display: flex; /* Utilisation de la mise en page flexbox */
-    justify-content: center; /* Alignement vertical au centre sur l'axe principal */
+    display: flex; /* mise en page flexbox */
+    justify-content: center; 
     
 }
 .rightBox{
