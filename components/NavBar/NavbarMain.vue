@@ -1,24 +1,25 @@
 <script setup>
-let currentUser = ref(null);
-
+let currentUser = ref({});
 
 </script>
 
 <template>
-    <nav>
-        <ul class="flex justifyBetween alignCenter">
+    <nav class="">
+        <ul class="h100 flex justifyBetween alignCenter">
             <NavBarLogo />
 
             <NavBarLinks />
 
-            <LoginButton :currentUser="currentUser" />
+            <NavBarLoginButton :currentUser="currentUser" />
         </ul>
     </nav>
 </template>
 
 <style scoped>
+nav {
+    height: 60px;
+}
 ul {
-    background-color: rgb(245, 245, 245);
     padding: 10px;
 }
 </style>
