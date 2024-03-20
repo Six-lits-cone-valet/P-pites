@@ -37,6 +37,9 @@
 .marLeftAuto {margin-left: auto;}
 .marRightAuto {margin-right: auto;}
 
+.shrink {flex-shrink: 1;}
+.shrink0 {flex-shrink: 0;}
+
 .grow {flex-grow: 1;}
 .grow1 {flex-grow: 1;}
 .grow2 {flex-grow: 2;}
