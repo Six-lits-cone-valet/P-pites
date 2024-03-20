@@ -33,12 +33,12 @@ const props = defineProps({
  
             </ul>
 
-            <p class="box business flex alignCenter  gap20" v-if="item.business"> 
-                <svg viewBox="0 -960 960 960" class="cardIcon">
+            <p class="box business flex alignCenter gap20 overflowHidden" v-if="item.business"> 
+                <svg viewBox="0 -960 960 960" class="cardIcon shrink0">
                     <path :d="icons.storeFront.path" />
                 </svg>
 
-                <span>{{ item.business.name }}</span> 
+                <span class="grow">{{ item.business.name }}</span> 
             </p>
 
             <p class="box city flex alignCenter  gap20" v-if="item.business"> 
@@ -132,7 +132,8 @@ const props = defineProps({
 .business span{
     font-size: 16px;
     font-weight: 600;
+    overflow: hidden;
     white-space: nowrap;
-    
+    text-overflow: ellipsis;
 }
 </style>
