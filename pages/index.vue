@@ -3,7 +3,7 @@ import { CardContentPepite, CardContentCity, CardContentCategories } from '#comp
 
 const requestParamsLastPepite = {
     fields: [
-        '*', 'category.text'
+        '*', 'category.text', 'business.*', 'business.city.*'
     ],
     // sort: '-date_created',
     limit: 1,
@@ -11,7 +11,7 @@ const requestParamsLastPepite = {
 
 const requestParamsPepites = {
     fields: [
-        '*', 'category.text'
+        '*', 'category.text', 'business.*', 'business.city.*'
     ],
     sort: '-date_created',
     limit: 4,

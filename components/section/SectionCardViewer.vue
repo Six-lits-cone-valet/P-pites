@@ -25,31 +25,26 @@ const { data: items } = await useAsyncData(
 </script>
 
 <template>
-    <main class="grow">
-        <div v-if="items">
-            <section :class="{ 'landscape' : landscape }">
-                <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape" class="card">
+    <section v-if="items"
+            class="flex gap20"
+            :class="{ 'landscapeCards' : landscape }">
+            <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape">
 
-                    <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
-                </CardMain>
-            </section>
-        </div>
-    </main>
+                <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
+            </CardMain>
+        </section>
+
 </template>
 
 <style scoped>
 section {
-    overflow-x: scroll;
-    display: flex;
-    gap: 20px;
+    padding: 20px;
     margin-bottom: min(50px, 4vw);
+    overflow-x: scroll;    
 }
-section.landscape {
+section.landscapeCards {
     flex-direction: column;
     overflow-x: hidden;
-    margin-bottom: min(50px, 4vw);
 }
-.card {
-    flex-shrink: 0;
-}
+
 </style>
