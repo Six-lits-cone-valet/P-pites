@@ -36,28 +36,40 @@ const props = defineProps({
 <style scoped>
 
 article {
+    flex-shrink: 0;
+    border: 2px solid var(--gray-dimmed);
+    border-radius: 10px;
+    box-shadow: 0px 1px 10px rgb(0, 15, 24);
     overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-    margin: auto;
 }
 .portrait {
     width: min(300px, 100%);
 }
 .landscape {
-    width: 100%;
+    width: min(900px, 100%);
+    background-color: var(--dark);
     display: flex;
+    margin: auto;
 }
+
 .frame {
     flex-shrink: 0;
 }
 .portrait .frame {
     width: 100%;
-    height: 200px;
+    height: 175px;
 }
 .landscape .frame{
     width: min(300px, 100%);
-     height: 200px;
 }
+@media (max-width: 660px) {
+    .landscape {
+        flex-direction: column;
+    }
+    .landscape .frame{
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
 
+}
 </style>
