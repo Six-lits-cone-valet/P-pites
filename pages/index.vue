@@ -19,7 +19,7 @@ const requestParamsPepites = {
 
 const requestParamsCities = {
     fields: [
-        '*'
+        '*', 'description', 'population.*', 'specialites.*', 'produitsLocaux.*', 'evenementsCulinaires.*'
     ],
 }
 
