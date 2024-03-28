@@ -17,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <article :class="[ landscape ? 'landscape' : 'portrait' ]" class="flex card">
+    <NuxtLink :to="`/pepites/${item.slug}`" :class="[ landscape ? 'landscape' : 'portrait' ]" class="card flex pointer">
         <div class="frame">
             <picture>
                 <!-- should be a .webp format -->
@@ -30,12 +30,12 @@ const props = defineProps({
         <slot>
 
         </slot>
-    </article>
+    </NuxtLink>
 </template>
 
 <style scoped>
 
-article {
+.card {
     flex-shrink: 0;
     background-color: var(--dark);
     border-radius: 10px;

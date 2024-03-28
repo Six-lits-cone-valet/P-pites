@@ -39,11 +39,13 @@ const { data: items } = await useAsyncData(
                 {{ title }}
             </h1>
 
-            <div class="cards flex gap20 marTop20">
-                <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape">
+            <div class="cards">
+                <div class="scroller flex gap20 marTop20">
+                    <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape">
 
-                <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
-            </CardMain>
+                        <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
+                    </CardMain>
+                </div>
             </div>
         </section>
 
@@ -56,7 +58,7 @@ const { data: items } = await useAsyncData(
 
 section {
     margin-bottom: min(50px, 4vw);
-    overflow-x: scroll;    
+    
 }
 section.landscapeCards {
     flex-direction: column;
@@ -75,12 +77,20 @@ section.landscapeCards {
 .Pepites {
     --color: var(--theme-color-pepite);
 }
+
 .cards {
     padding: clamp(5px, 1.5vw, 20px);
+       
 }
 .showBorders .cards{
     border-width: 5px;
-    border-style: dashed;
+    border-radius: 30px;
+    border-style: double;
     border-color: var(--color);
+    box-shadow: inset 0 0 50px rgb(0, 0, 0);
+}
+.scroller {
+    overflow-x: scroll; 
+    padding: 5px 0 20px 20px;
 }
 </style>
