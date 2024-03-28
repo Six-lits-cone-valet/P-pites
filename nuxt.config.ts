@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   css: [
     '@/css/main.css',
     '@/css/utility.css',
+    '@/css/scroll-bar.css',
     '@/css/components/cards.css'
   ],
   ssr: false
