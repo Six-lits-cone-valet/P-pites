@@ -1,0 +1,63 @@
+.cardContentBox.portrait {
+    padding: 10px;
+}
+
+.cardContentBox.landscape {
+    padding: clamp(10px, 2vw, 20px);
+}
+
+.cardContentBox .box {
+    padding: 6px 4px;
+    border-bottom: 1px solid var(--gray-dimmed);
+}
+.cardContentBox .box.title {
+    padding-top: 0;
+}
+
+.portrait .portraitContent .box:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.landscape .landscapeContent .box:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.cardContentBox .cardIcon {
+    width: 22px;
+    fill: var(--gray-light);
+}
+
+.portrait .cardTitle {
+    font-size: 17px;
+    font-weight: 600;
+}
+.landscape .cardTitle {
+    font-size: clamp(18px, 3vw, 23px);
+    font-weight: 600;
+}
+
+.cardContentBox .description {
+    font-size: 18px;
+    line-height: 1.4em;
+    color: var(--gray-light);
+    padding: 0px 7px;
+}
+
+.cardContentBox .box.business span {
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.cardContentBox .textTag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-light);
+    border: 1px solid var(--gray-dimmed);
+    padding: 4px 10px;
+    border-radius: 100px;
+}

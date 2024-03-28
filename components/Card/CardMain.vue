@@ -21,9 +21,9 @@ const props = defineProps({
         <div class="frame">
             <picture>
                 <!-- should be a .webp format -->
-                <source :srcset="`${directusBaseUrl}assets/${item.image}`">
+                <source :srcset="`${directusBaseUrl}assets/${item.image}?key=card-image`">
                 <!-- should be a .jpg format -->
-                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}`" alt="">
+                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}?key=card-image`" alt="">
             </picture>
         </div>
 
@@ -37,6 +37,7 @@ const props = defineProps({
 
 article {
     flex-shrink: 0;
+    background-color: var(--dark);
     border: 2px solid var(--gray-dimmed);
     border-radius: 10px;
     box-shadow: 0px 1px 10px rgb(0, 15, 24);
