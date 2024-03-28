@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-<div class="cardContentBox portrait">
+<div class="cardContentBox portrait grow">
     <h1 class="box title cardTitle">
         {{ item.name }},
         <span class="grow" v-if="item.country">{{ item.country }}</span>
@@ -19,16 +19,13 @@ const props = defineProps({
 
     <div class="portraitContent">
         <ul class=" icons grow flex column">
-            <div class="box flex alignCenter gap10">
+            <li class="box business flex alignCenter gap20 overflowHidden"> 
+                <svg viewBox="0 -960 960 960" class="cardIcon shrink0">
+                    <path :d="icons.groups.path" />
+                </svg>
 
-                <li class="box business flex alignCenter gap20 overflowHidden" v-if="item.Population"> 
-                    <svg viewBox="0 -960 960 960" class="cardIcon shrink0">
-                        <path :d="icons.groups.path" />
-                    </svg>
-
-                    <span class="grow">{{ item.Population }}</span> 
-                </li>
-            </div>
+                <span class="grow" v-if="item.Population">{{ item.Population }}</span> 
+            </li>
 
             <li class="box business ellipsis flex alignCenter gap20 overflowHidden" v-if="item.business"> 
                 <svg viewBox="0 -960 960 960" class="cardIcon shrink0">
@@ -38,14 +35,6 @@ const props = defineProps({
                 <span class="infoText grow">{{ item.business.length }}</span> 
             </li>
         </ul>            
-    </div>
-
-    <div class="landscapeContent">
-        <p v-if="landscape"
-            class="box description">
-            {{ item.description.slice(0,400) }}
-            <span class="italic text-14"> ... lire la suite</span>
-        </p>
     </div>
 </div>
     
