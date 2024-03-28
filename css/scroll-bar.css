@@ -1,0 +1,21 @@
+/* écrire les styles avec les vedor prefixes */
+
+:root {
+    --track-color: purple;
+    --thumb-color: blue;
+    --scrollbar-width: thin;
+}
+
+
+/* Firefox */
+
+
+
+/* Chrome */
+* {
+    scrollbar-color: rgba(128, 128, 128, 0.48) rgba(128, 128, 128, 0.217);
+    scrollbar-width: thin;
+}
+
+/* Safari */
+
