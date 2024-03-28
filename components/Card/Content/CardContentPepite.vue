@@ -36,7 +36,7 @@ const props = defineProps({
                         <path :d="icons.storeFront.path" />
                     </svg>
 
-                    <span class="grow">{{ item.business.name }}</span> 
+                    <span class="infoText grow">{{ item.business.name }}</span> 
                 </li>
 
                 <li class="box city ellipsis flex alignCenter  gap20" v-if="item.business"> 
@@ -44,7 +44,7 @@ const props = defineProps({
                         <path :d="icons.city.path" />
                     </svg>
 
-                    <span>{{ item.business.city.name }}</span> 
+                    <span class="infoText grow">{{ item.business.city.name }}</span> 
                 </li>
             </ul>            
         </div>
