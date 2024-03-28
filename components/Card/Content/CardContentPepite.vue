@@ -20,7 +20,7 @@ const props = defineProps({
         <div class="portraitContent">
             <ul class=" icons grow flex column">
                 <div class="box flex alignCenter gap10">
-                    <li v-if="item.category"class="category textTag">
+                    <li v-if="item.category" class="category textTag">
                         <span> {{ item.category.text }} </span>
                     </li>
 
