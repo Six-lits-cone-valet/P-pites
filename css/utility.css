@@ -131,6 +131,7 @@
 .lowercase {text-transform: lowercase;}
 .capitalize {text-transform: capitalize;}
 
+.ellipsis {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 
 
 .weight1 {font-weight: 100;}

@@ -38,7 +38,7 @@ const { data: items } = await useAsyncData(
 
 <style scoped>
 section {
-    padding: 20px;
+    padding: clamp(5px, 1.5vw, 20px);
     margin-bottom: min(50px, 4vw);
     overflow-x: scroll;    
 }

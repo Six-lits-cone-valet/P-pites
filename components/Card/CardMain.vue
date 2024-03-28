@@ -21,9 +21,9 @@ const props = defineProps({
         <div class="frame">
             <picture>
                 <!-- should be a .webp format -->
-                <source :srcset="`${directusBaseUrl}assets/${item.image}`">
+                <source :srcset="`${directusBaseUrl}assets/${item.image}?key=card-image`">
                 <!-- should be a .jpg format -->
-                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}`" alt="">
+                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}?key=card-image`" alt="">
             </picture>
         </div>
 
