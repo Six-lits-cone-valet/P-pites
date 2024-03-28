@@ -37,6 +37,7 @@ const props = defineProps({
 
 article {
     flex-shrink: 0;
+    background-color: var(--dark);
     border: 2px solid var(--gray-dimmed);
     border-radius: 10px;
     box-shadow: 0px 1px 10px rgb(0, 15, 24);

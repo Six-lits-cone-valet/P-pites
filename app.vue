@@ -12,7 +12,7 @@
 
 <style scoped>
 #appBox {
-    width: min(100%, 1200px);
+    width: min(100%, 1250px);
     min-height: 100vh;
     margin: auto;
 }
