@@ -48,9 +48,6 @@
 .cardContentBox .infoText {
     font-size: 16px;
     font-weight: 600;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .cardContentBox .textTag {
@@ -60,4 +57,21 @@
     border: 1px solid var(--gray-dimmed);
     padding: 4px 10px;
     border-radius: 100px;
+}
+.cardContentBox .box.short {
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.Categories .cardContentBox {
+    border-color: var(--theme-color-category);
+    background-color: var(--theme-color-category);
+}
+
+.Cities .cardContentBox {
+    background-color: var(--theme-color-city);
+}
+
+.Pepites .cardContentBox {
+    background-color: var(--theme-color-pepite);
 }

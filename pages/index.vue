@@ -36,6 +36,7 @@ const requestParamsCategories = {
 
     <!-- la dernière pépite -->
     <SectionCardViewer 
+        title="Dernière pépite"
         requestId="lastPepite"
         collection="Pepites" 
         :requestParams="requestParamsLastPepite" 
@@ -45,27 +46,33 @@ const requestParamsCategories = {
 
     <!-- toutes les pépites -->
     <SectionCardViewer 
+        title="Toutes les pépites"
         requestId="allPepites"
         collection="Pepites" 
         :requestParams="requestParamsPepites" 
         :contentComponent="CardContentPepite"
+        borders
     />
 
     <!-- liste des villes -->
     <SectionCardViewer 
+        title="Les Villes"
         requestId="allCities"
         collection="Cities" 
         :requestParams="requestParamsCities" 
         :contentComponent="CardContentCity"
+        borders
     />
+
 
     <!-- les categories -->
     <SectionCardViewer 
-    requestId="allCategories"
-    collection="Categories" 
-    :requestParams="requestParamsCategories" 
-    :contentComponent="CardContentCategories"
-    
+        title="Les Catégories"
+        requestId="allCategories"
+        collection="Categories" 
+        :requestParams="requestParamsCategories" 
+        :contentComponent="CardContentCategories"
+        borders
     />
 </template>
 

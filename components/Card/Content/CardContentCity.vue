@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="contentBox" :class="[landscape ? 'landscape' : 'portrait']" v-if="item">
+  <div class="contentBox cardContentBox" :class="[landscape ? 'landscape' : 'portrait']" v-if="item">
     
     <h1 class="cardTitle boxLevel1">
         {{ item.name }},

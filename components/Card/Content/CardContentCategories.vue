@@ -10,39 +10,21 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="contentBox flex grow justifyEnd">
-      <div class="grow flex column justifyBetween">
-        <h1>{{ item.text }}</h1>
-  
-        <p>{{ item.type }}</p>
-        <p>{{ item.pepitesSalees }}</p>
-        <p>{{ item.boissons }}</p>
-        
-        <div class="flex gap5">
-          <p v-for="option in item.options" :key="option.id">{{ option }}</p>
+    <div class="cardContentBox portrait grow">
+        <h1 class="box title cardTitle">
+            {{ item.cardTitle }}
+        </h1>
+
+        <div class="portraitContent">
+            <p class="box short">
+                {{ item.short }}
+            </p>
         </div>
-      </div>
-  
-      <div class="iconBox flex column gap10">
-        
-        <p class="iconExample"></p>
-  
-        <p class="iconExample"></p>
-  
-        <p class="iconExample"></p>
-      </div>
     </div>
   </template>
   
   <style scoped>
-  .iconBox {
-    padding: 5px;
-  }
-  .iconExample {
-    width: 20px;
-    height: 20px;
-    background-color: black;
-    border-radius: 50%;
-  }
+  
+
   </style>
   

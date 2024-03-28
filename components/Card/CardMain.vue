@@ -17,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <article :class="[landscape ? 'landscape' : 'portrait']">
+    <article :class="[ landscape ? 'landscape' : 'portrait' ]" class="flex card">
         <div class="frame">
             <picture>
                 <!-- should be a .webp format -->
@@ -38,13 +38,13 @@ const props = defineProps({
 article {
     flex-shrink: 0;
     background-color: var(--dark);
-    border: 2px solid var(--gray-dimmed);
     border-radius: 10px;
     box-shadow: 0px 1px 10px rgb(0, 15, 24);
     overflow: hidden;
 }
 .portrait {
     width: min(300px, 100%);
+    flex-direction: column;
 }
 .landscape {
     width: min(900px, 100%);
