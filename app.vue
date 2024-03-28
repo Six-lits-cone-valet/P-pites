@@ -2,7 +2,9 @@
   <div id="appBox" class="flex column justifyBetween">
     <NavBarMain />
 
-    <NuxtPage />
+    <main class="">
+        <NuxtPage />
+    </main>
     
     <FooterMain />
   </div>
