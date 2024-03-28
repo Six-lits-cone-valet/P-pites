@@ -5,6 +5,7 @@
 .cardContentBox.landscape {
     padding: clamp(10px, 2vw, 20px);
 }
+
 .cardContentBox .box {
     padding: 6px 4px;
     border-bottom: 1px solid var(--gray-dimmed);
@@ -23,7 +24,7 @@
     border-bottom: none;
 }
 
-.cardIcon {
+.cardContentBox .cardIcon {
     width: 22px;
     fill: var(--gray-light);
 }
@@ -37,14 +38,14 @@
     font-weight: 600;
 }
 
-.description {
+.cardContentBox .description {
     font-size: 18px;
     line-height: 1.4em;
     color: var(--gray-light);
     padding: 0px 7px;
 }
 
-.business span {
+.cardContentBox .box.business span {
     font-size: 16px;
     font-weight: 600;
     overflow: hidden;
@@ -52,7 +53,7 @@
     text-overflow: ellipsis;
 }
 
-.textTag {
+.cardContentBox .textTag {
     font-size: 12px;
     font-weight: 600;
     color: var(--gray-light);
