@@ -1,19 +1,43 @@
 <template>
-  <div id="appBox" class="flex column justifyBetween">
     <NavBarMain />
 
-    <main class="">
-        <NuxtPage />
-    </main>
-    
-    <FooterMain />
-  </div>
+    <div id="appContent" class="grow relative">
+        <div class="absoluteFull">
+            <main class="w100">
+                <NuxtPage />
+            </main>
+
+            <FooterMain />
+        </div>
+    </div>
 </template>
 
+<style>
+#__nuxt {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+@media (min-width: 950px) {
+    #__nuxt {
+        flex-direction: row;
+    }
+}
+@media (max-width: 949px) {
+    #__nuxt {
+        flex-direction: column;
+    }
+}
+</style>
+
 <style scoped>
-#appBox {
-    width: min(100%, 1250px);
-    min-height: 100vh;
+#appContent .absoluteFull{
+    overflow: scroll;
+}
+main {
+    width: min(100%, 1200px);
     margin: auto;
+    padding: 20px;
+    
 }
 </style>
