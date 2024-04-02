@@ -1,4 +1,4 @@
-<template>
+<template id="nuxt">
     <NavBarMain />
 
     <div id="appContent" class="grow relative">
@@ -18,11 +18,13 @@
     height: 100%;
     display: flex;
 }
+
 @media (min-width: 950px) {
     #__nuxt {
         flex-direction: row;
     }
 }
+
 @media (max-width: 949px) {
     #__nuxt {
         flex-direction: column;

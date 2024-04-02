@@ -76,9 +76,6 @@ async function deconnectUser() {
 .button.groups {
     background-color: var(--theme-color-user);
 }
-.button.groups {
-    background-color: var(--theme-color-user);
-}
 .button.account {
     background-color: var(--theme-color-account);
 }
