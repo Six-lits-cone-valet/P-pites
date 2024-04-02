@@ -28,8 +28,11 @@ ul {
     list-style: none;
 }
 
-html {
+body {
+    width: 99vw;
+    height: 100vh;
     background-color: var(--darker);
+    overflow: hidden;
 }
 
 :root {
@@ -43,6 +46,8 @@ html {
     --theme-color-category: #4a5a00;
     --theme-color-city: #5a3b00;
     --theme-color-pepite: #5a003b;
+    --theme-color-user: #003b5a;
+    --theme-color-account: #3b5a00;
     
     --border-light: #ffffff44;
 
