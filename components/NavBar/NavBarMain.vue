@@ -42,6 +42,11 @@ button.menu {
     background-color: transparent;
     border: none;
 }
+@media (min-width: 950px) {
+    button.menu {
+        display: none;
+    }
+}
 .icon {
     width: 30px;
     height: 30px;
@@ -59,6 +64,7 @@ button.menu {
 .contentBox {
     background-color: var(--dark);
     padding: 10px;
+    border-radius: 10px;
     display: flex;
 
 }
@@ -74,13 +80,16 @@ button.menu {
     }
         
     .contentBox {
+        
         position: absolute;
         top: 100%;
-        left: 0;
-        display: none;
+        left: 10px;
+        transform: translateX(-150%);
+        transition: transform 0.5s;
     }
     .contentBox.active {
-        display: flex;
+        transform: translateX(0%);
+        box-shadow: 3px 3px 10px black;
     }
 }
 </style>
