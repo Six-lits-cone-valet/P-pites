@@ -14,9 +14,12 @@ const props = defineProps({
         default: false
     }
 })
+
+
 </script>
 
 <template>
+
     <NuxtLink :to="`/pepites/${item.slug}`" :class="[ landscape ? 'landscape' : 'portrait' ]" class="card flex pointer">
         <div class="frame">
             <picture>
@@ -28,6 +31,7 @@ const props = defineProps({
         </div>
 
         <slot>
+            
 
         </slot>
     </NuxtLink>

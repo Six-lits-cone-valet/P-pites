@@ -3,6 +3,8 @@
 
 import { createDirectus, rest, readItems } from '@directus/sdk';
 
+export { directusBaseUrl, directusGetItems };
+
 const directusBaseUrl = 'https://pepites.monsieuredgar.com/';
 
 const directus = createDirectus(directusBaseUrl).with(rest());
@@ -15,4 +17,3 @@ const directusGetItems = async (collection, queryParams) => {
     return items;
 }
 
-export { directusBaseUrl, directusGetItems };
