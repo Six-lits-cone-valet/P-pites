@@ -6,6 +6,10 @@ const props = defineProps({
     landscape: {
         type: Boolean,
         default: false
+    },
+    fullText: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -31,29 +35,32 @@ const props = defineProps({
                     </li>
                 </div>
 
-                <li class="box business ellipsis flex alignCenter gap20 overflowHidden" v-if="item.business"> 
+                <li class="box business ellipsis flex alignCenter gap20 overflowHidden" v-if="item.business">
                     <svg viewBox="0 -960 960 960" class="cardIcon shrink0">
                         <path :d="icons.storeFront.path" />
                     </svg>
 
-                    <span class="infoText grow">{{ item.business.name }}</span> 
+                    <span class="infoText grow">{{ item.business.name }}</span>
                 </li>
 
-                <li class="box city ellipsis flex alignCenter  gap20" v-if="item.business"> 
+                <li class="box city ellipsis flex alignCenter  gap20" v-if="item.business">
                     <svg viewBox="0 -960 960 960" class="cardIcon">
                         <path :d="icons.city.path" />
                     </svg>
 
-                    <span class="infoText grow">{{ item.business.city.name }}</span> 
+                    <span class="infoText grow">{{ item.business.city.name }}</span>
                 </li>
-            </ul>            
+            </ul>
         </div>
 
-        <div class="landscapeContent">
-            <p v-if="landscape"
-                class="box description">
+        <div class="landscapeContent" v-if="landscape">
+            <p class="box description" v-if="!fullText">
                 {{ item.description.slice(0,400) }}
                 <span class="italic text-14"> ... lire la suite</span>
+            </p>
+
+            <p class="box description" v-else>
+                {{ item.description }}
             </p>
         </div>
     </div>

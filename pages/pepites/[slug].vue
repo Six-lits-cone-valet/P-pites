@@ -1,11 +1,16 @@
 <script setup>
-import { directusGetItems } from '@/directus/directus.config.js';
+import { directusGetItems, directusBaseUrl } from '@/directus/directus.config.js';
 
 const route = useRoute();
 
 const requestParams = {
     fields: [
-        '*', 'category.text', 'business.*', 'business.city.*'
+        '*', 
+        "photos.id", 
+        "photos.directus_files_id",
+        'category.text', 
+        'business.*', 
+        'business.city.*'
     ],
     filter: {
         slug: route.params.slug
@@ -21,16 +26,55 @@ const { data: pepite } = await useAsyncData(
     },
     { server: true }
 );
+
 </script>
 
 <template>
-    <div v-if="pepite">
-        <h1>{{ pepite.title }}</h1>
+    <div v-if="pepite" class="container flex">
+        <div class="images">
+            <img 
+                :src="`${directusBaseUrl}assets/${pepite.image}`" 
+                alt="photo" 
+            />
 
-        <p>{{ pepite.business.name }}</p>
+            <img 
+                v-for="photo in pepite.photos" :key="photo.id" 
+                :src="`${directusBaseUrl}assets/${photo.directus_files_id}`" 
+                alt="photo" 
+            />
+        </div>
 
-        <p>{{ pepite.business.city.name }}</p>
-
-        <p>{{  pepite.description }}</p>
+        <div class="box">
+            <CardContentPepite :item="pepite" landscape fullText />
+        </div>
     </div>
 </template>
+
+<style scoped>
+.images {
+    flex-shrink: 0;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+img {
+    width: 350px;
+}
+
+@media (max-width: 949px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .images {
+        flex-direction: row;
+    }
+
+    img {
+        width: auto;
+        height: 350px;
+    }
+}
+</style>
