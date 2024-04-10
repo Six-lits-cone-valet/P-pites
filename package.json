@@ -10,11 +10,12 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.9.3",
+    "nuxt": "^3.11.2",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@directus/sdk": "^15.0.1"
+    "@directus/sdk": "^15.0.1",
+    "nuxi": "^3.11.1"
   }
 }

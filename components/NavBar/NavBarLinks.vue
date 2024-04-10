@@ -1,5 +1,10 @@
 <script setup>
 import icons from '@/assets/icons.json'
+const { $directusBaseUrl } = useNuxtApp();
+
+const userState = useUserState();
+
+console.log(userState.value);
 
 const links = [
     {
@@ -7,23 +12,17 @@ const links = [
         text: "Nos pépites",
         href: "/pepites",
         icon: "eatIn"
-    },
-    {
-        id: 1,
-        text: "Nos créateurs",
-        href: "/createurs",
-        icon: "groups"
     }
 ]
-
-const appState = useAppState();
 
 const props = defineProps({
     currentUser: Object
 })
 
-async function deconnectUser() {
-    appState.value.userLoggedIn = false;
+const appState = useAppState();
+
+function showConnection() {
+    appState.value.showConnectionForm = true;
 }
 </script>
 
@@ -39,8 +38,8 @@ async function deconnectUser() {
             </NuxtLink>
         </li>
 
-        <li class="button account">
-            <NuxtLink class="flex column gap5 alignCenter" to="/connexion" v-if="!appState.userLoggedIn">
+        <li class="button connection pointer" v-if="!userState.userLoggedIn" @click="showConnection">
+            <div class="flex column gap5 alignCenter" v-if="!appState.userLoggedIn">
                 <svg viewBox="0 -960 960 960" class="icon shrink0">
                     <path :d="icons.login.path" />
                 </svg>
@@ -48,17 +47,21 @@ async function deconnectUser() {
                 <span>
                     se connecter
                 </span>
-            </NuxtLink>
+            </div>
         </li>
 
-        <li class="button account">
-            <NuxtLink class="flex column gap5 alignCenter" to="/connexion" v-if="!appState.userLoggedIn">
-                <svg viewBox="0 -960 960 960" class="icon shrink0">
-                    <path :d="icons.account.path" />
-                </svg>
+        <li class="button account" v-else>
+            <NuxtLink class="flex column gap5 alignCenter" to="/profil">
+                <div class="frame">
+                    <svg viewBox="0 -960 960 960" class="shrink0 icon" v-if="!userState.avatarId">
+                        <path :d="icons.account.path" />
+                    </svg>
 
-                <span>
-                    Votre compte
+                    <img :src="`${$directusBaseUrl}/assets/${userState.avatarId}`" alt="" v-else>
+                </div>
+
+                <span class="">
+                    {{ userState.firstName || 'Mon compte'}}
                 </span>
             </NuxtLink>
         </li>
@@ -76,12 +79,27 @@ async function deconnectUser() {
 .button.groups {
     background-color: var(--theme-color-user);
 }
-.button.account {
+.button.connection {
     background-color: var(--theme-color-account);
 }
+.button.account {
+    background-color: var(--theme-color-user);
+}
+.frame {
+    width: 30px;
+    height: 30px;
+}
+
 .icon {
     width: 20px;
     height: 20px;
     fill: white;
+}
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--gray-dimmed);
 }
 </style>

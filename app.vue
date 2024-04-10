@@ -4,7 +4,10 @@
     <div id="appContent" class="grow relative">
         <div class="absoluteFull">
             <main class="w100">
+                <Toaster />
                 <NuxtPage />
+
+                <Connection />
             </main>
 
             <FooterMain />
