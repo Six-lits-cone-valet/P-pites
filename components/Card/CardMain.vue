@@ -21,13 +21,15 @@ const props = defineProps({
 <template>
 
     <NuxtLink :to="`/pepites/${item.slug}`" :class="[ landscape ? 'landscape' : 'portrait' ]" class="card flex pointer">
-        <div class="frame">
+        <div class="frame relative">
             <picture>
                 <!-- should be a .webp format -->
                 <source :srcset="`${directusBaseUrl}assets/${item.image}?key=card-image`">
                 <!-- should be a .jpg format -->
                 <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}?key=card-image`" alt="">
             </picture>
+
+            <CardLikeButton />
         </div>
 
         <slot>

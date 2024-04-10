@@ -83,3 +83,7 @@ body {
 .text-24 {
     font-size: 1.5rem; /* 24px */
 }
+
+input, button, fieldset {
+    all: unset;
+}

@@ -1,10 +1,15 @@
 export const useAppState = () => {
     return useState<{
-        userLoggedIn: boolean,
-
+        showConnectionForm: boolean,
+        toaster: Object
     }>('appState',
         () => ({
-            userLoggedIn: false,
+            showConnectionForm: false,
+            toaster: {
+                show: false,
+                message: '',
+                type: 'success'
+            }
         })
     );
 }
