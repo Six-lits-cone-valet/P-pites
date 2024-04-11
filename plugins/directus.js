@@ -46,6 +46,7 @@ async function userLogin(email, password) {
 }
 
 async function createUserAccount(firstName, lastName, email, password ) {
+
     try {
         const response = await directus.request(createUser({
             email: email,
@@ -54,8 +55,9 @@ async function createUserAccount(firstName, lastName, email, password ) {
             last_name: lastName
         }));
 
-        userLogin(response.email, password);
+        // userLogin(response.email, password);
     } catch (error) {
+        console.log("problemo")
         console.log(error);
     }
 }

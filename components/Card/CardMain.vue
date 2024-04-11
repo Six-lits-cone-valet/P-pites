@@ -54,7 +54,7 @@ async function createLike() {
 
 async function deleteLike(likeId) {
     try {
-        const response = $directus.request($deleteItem('Likes', props.item.likes.find(like => like.user === userState.value.id).id))
+        const response = $directus.request($deleteItem('Likes', props.item.likes.find(like => like.user_created === userState.value.id).id))
 
         if(response ) emit('refresh');
 
@@ -70,15 +70,15 @@ async function deleteLike(likeId) {
         <div class="frame relative">
             <picture>
                 <!-- should be a .webp format -->
-                <source :srcset="`${directusBaseUrl}assets/${item.image}?key=card-image`">
+                <!-- <source :srcset="`${directusBaseUrl}assets/${item.image}?key=card-image`"> -->
                 <!-- should be a .jpg format -->
-                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}?key=card-image`" alt="">
+                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}`" alt="">
             </picture>
 
             <CardLikeButton 
                 v-if="likeButton" 
                 :likes="item.likes.length" 
-                :liked="props.item.likes.some(like => like.user === userState.id)"
+                :liked="props.item.likes.some(like => like.user_created === userState.id)"
                 @createLike="createLike"
                 @deleteLike="deleteLike"
             />

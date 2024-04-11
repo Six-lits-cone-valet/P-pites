@@ -1,4 +1,5 @@
 <script setup>
+import icons from '@/assets/icons';
 const { $directus, $createItem } = useNuxtApp();
 const userState = useUserState();
 
@@ -17,10 +18,7 @@ async function handleSubmit() {
         text: text.value,
         pepite: {
             id: props.pepiteId
-        },
-        user: {
-            id: userState.value.id
-        },
+        }
     }))
 
     if(response) {
@@ -33,23 +31,30 @@ async function handleSubmit() {
 
 <template>
     <div v-if="userState.userLoggedIn">
-        <button class="pointer" @click="commentBoxIsOpen = !commentBoxIsOpen" v-if="!commentBoxIsOpen">
-            ajouter un commentaire
-        </button>
+        <div class="flex justifyEnd" v-if="!commentBoxIsOpen">
+            <button class="pointer" @click="commentBoxIsOpen = !commentBoxIsOpen">
+                <svg viewBox="0 -960 960 960">
+                    <path :d="icons.addComment.path"/>
+                </svg>
+            </button>
+        </div>
 
         <form v-else class="comment">
             <div class="intro flex justifyEnd">
-                <span class="pointer" @click="commentBoxIsOpen = !commentBoxIsOpen" >
-                    close
-                </span>
+                <button class="pointer" @click="commentBoxIsOpen = !commentBoxIsOpen">
+                    <svg viewBox="0 -960 960 960">
+                        <path :d="icons.close.path"/>
+                    </svg>
+                </button>
             </div>
+
             <div class="flex">
                 <textarea v-model="text" class="grow marTop10" name="text"></textarea>
             </div>
 
             <div class="outro flex justifyEnd">
-                <button class="pointer"  @click.prevent="handleSubmit">
-                    submit
+                <button class="publier pointer"  @click.prevent="handleSubmit">
+                    publier
                 </button>
             </div>
         </form>
@@ -65,5 +70,17 @@ textarea {
     font-weight: 600;
     background-color: #ffffff0a;
     padding: 10px;
+}
+svg {
+    width: 48px;
+    height: 48px;
+    padding: 6px;
+    fill: var(--gray-light);
+}
+.publier {
+    background-color: var(--gray-dimmed);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 </style>

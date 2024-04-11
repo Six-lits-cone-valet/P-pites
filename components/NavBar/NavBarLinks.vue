@@ -1,10 +1,8 @@
 <script setup>
 import icons from '@/assets/icons.json'
-const { $directusBaseUrl } = useNuxtApp();
+const { $directusBaseUrl, $directus, $createUserAccount } = useNuxtApp();
 
 const userState = useUserState();
-
-console.log(userState.value);
 
 const links = [
     {
@@ -24,6 +22,7 @@ const appState = useAppState();
 function showConnection() {
     appState.value.showConnectionForm = true;
 }
+
 </script>
 
 <template>
