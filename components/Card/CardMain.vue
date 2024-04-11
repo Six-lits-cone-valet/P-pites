@@ -12,6 +12,10 @@ const props = defineProps({
     landscape: {
         type: Boolean,
         default: false
+    },
+    likeButton: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -29,7 +33,7 @@ const props = defineProps({
                 <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}?key=card-image`" alt="">
             </picture>
 
-            <CardLikeButton />
+            <CardLikeButton v-if="likeButton" :pepiteId="item.id" :likes="item.likes.length"/>
         </div>
 
         <slot>
@@ -47,6 +51,10 @@ const props = defineProps({
     border-radius: 10px;
     box-shadow: 0px 1px 10px rgb(0, 15, 24);
     overflow: hidden;
+}
+.card:hover {
+    outline: 3px solid var(--gray-dimmed);
+    filter: brightness(1.1);
 }
 .portrait {
     width: min(300px, 100%);

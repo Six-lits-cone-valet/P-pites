@@ -42,6 +42,7 @@ const requestParamsCategories = {
         :requestParams="requestParamsLastPepite" 
         :contentComponent="CardContentPepite"
         landscape
+        likeButton
     />
 
     <!-- toutes les pépites -->
@@ -52,6 +53,7 @@ const requestParamsCategories = {
         :requestParams="requestParamsPepites" 
         :contentComponent="CardContentPepite"
         borders
+        likeButton
     />
 
     <!-- liste des villes -->

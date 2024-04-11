@@ -68,10 +68,11 @@
     background-color: var(--theme-color-category);
 }
 
-.Cities .cardContentBox {
+.Cities .cardContentBox{
     background-color: var(--theme-color-city);
 }
 
-.Pepites .cardContentBox {
+.Pepites .cardContentBox,
+.Pepites .likeButton .background {
     background-color: var(--theme-color-pepite);
 }

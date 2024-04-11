@@ -1,14 +1,26 @@
 <script setup>
-import icons from '@/assets/icons.json'
+const { $directus, $createItem } = useNuxtApp();
 
-const liked = ref(false);
+defineProps({
+    pepiteId: String,
+    likes: Number
+});
+
+async function like() {
+    const response = await $directus.request($createItem('Likes', {
+        pepite: 
+    }))
+}
 
 </script>
 
 <template>
-    <button class="noEvents centered">
-        <div class="background full centered">
-            <svg viewBox="0 0 24 24" class="allEvents" @click.stop.prevent="liked = !liked">
+    <button class="likeButton flex justifyEnd" @click.stop.prevent="like">
+        <div class="background h100 flex alignCenter gap5">
+            <p>
+                {{ likes }}
+            </p>
+            <svg viewBox="0 0 24 24" class="allEvents">
                 <g v-if="liked">
                     <path d="M0 0h24v24H0V0z" fill="none"/>
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -25,22 +37,23 @@ const liked = ref(false);
 
 <style scoped>
 button {
-    width: 48px;
     height: 48px;
-    border-radius: 50%;
+    
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0px;
+    right: 0px;
 }
 .background {
-    width: 36px;
-    height: 36px;
-    background-color: rgba(0, 0, 0, 0.616);
-    border-radius: 50%;
+    height: 30px;
+    border-bottom-left-radius: 10px;
+    padding: 0 5px;
+}
+p {
+    font-size: 14px;
+    font-weight: 700;
 }
 svg {
-    width: 28px;
-    height: 28px;
+    height: 22px;
     fill: var(--gray-light);
 }
 svg.liked {

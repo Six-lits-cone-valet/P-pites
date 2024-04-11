@@ -14,6 +14,10 @@ const props = defineProps({
     borders: {
         type: Boolean,
         default: false
+    },
+    likeButton: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -41,7 +45,7 @@ const { data: items } = await useAsyncData(
 
             <div class="cards">
                 <div class="scroller flex gap20 marTop20">
-                    <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape">
+                    <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape" :likeButton="likeButton">
 
                         <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
                     </CardMain>

@@ -1,4 +1,13 @@
-import { createDirectus, rest, authentication, readItems, readMe, createUser } from '@directus/sdk';
+import { 
+    createDirectus, 
+    rest, 
+    authentication, 
+    readItems, 
+    readMe, 
+    createUser,
+    createItem
+} from '@directus/sdk';
+
 export default defineNuxtPlugin(() => {
     return {
         provide: {
@@ -8,7 +17,8 @@ export default defineNuxtPlugin(() => {
             readItems,
             getUserData,
             createUserAccount,
-            logout
+            logout,
+            createItem
         },
     }
 })
