@@ -10,14 +10,18 @@ const requestParams = {
         "photos.directus_files_id",
         'category.text', 
         'business.*', 
-        'business.city.*'
+        'business.city.*',
+        'Likes.*',
+        'comments.*',
+        'comments.user.first_name',
+        'comments.user.avatar',
     ],
     filter: {
         slug: route.params.slug
     }
 }
 
-const { data: pepite } = await useAsyncData(
+const { data: pepite, refresh } = await useAsyncData(
     route.params.slug,
     async () => {
         const items = await directusGetItems('Pepites', requestParams);
@@ -30,7 +34,7 @@ const { data: pepite } = await useAsyncData(
 </script>
 
 <template>
-    <div v-if="pepite" class="container flex">
+    <div v-if="pepite" class="container flex marTop100">
         <div class="images">
             <img 
                 :src="`${directusBaseUrl}assets/${pepite.image}`" 
@@ -44,8 +48,15 @@ const { data: pepite } = await useAsyncData(
             />
         </div>
 
-        <div class="box">
+        <div class="box marTop50 grow">
             <CardContentPepite :item="pepite" landscape fullText />
+
+            <div class="commentBox">
+                <SectionComments 
+                :comments="pepite.comments" 
+                :pepiteId="pepite.id"
+                @refresh="refresh"/>
+            </div>
         </div>
     </div>
 </template>

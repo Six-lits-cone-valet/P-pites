@@ -3,13 +3,13 @@ import { directusGetItems } from '@/directus/directus.config.js';
 
 const requestParamsPepites = {
     fields: [
-        '*', 'category.text', 'business.*', 'business.city.*'
+        '*', 'category.text', 'business.*', 'business.city.*', 'likes.*'
     ],
     sort: '-date_created',
     limit: 25,
 }
 
-const { data: pepites } = await useAsyncData(
+const { data: pepites, refresh } = await useAsyncData(
     "pepites",
     async () => {
         const items = await directusGetItems('Pepites', requestParamsPepites);
@@ -33,7 +33,13 @@ const { data: pepites } = await useAsyncData(
         </div>
 
         <div class="cards flex wrap justifyEvenly">
-            <CardMain v-for="pepite in pepites" :item="pepite" class="card">
+            <CardMain 
+            v-for="pepite in pepites" :key="pepite.id"
+            class="Pepites card"
+            :item="pepite" 
+            likeButton
+            @refresh="refresh()"
+        >
                 <CardContentPepite :item="pepite" />
             </CardMain>
         </div>
@@ -46,7 +52,7 @@ const { data: pepites } = await useAsyncData(
     align-self: flex-start;
     flex-shrink: 0;
     padding: 10px;
-    width: 280px;
+    width: 200px;
     background-color: var(--darker);
 }
 section {

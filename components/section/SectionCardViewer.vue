@@ -1,6 +1,7 @@
 <script setup>
 import { directusGetItems } from '@/directus/directus.config.js';
 
+
 const props = defineProps({
     title: String,
     requestId: String,
@@ -21,7 +22,7 @@ const props = defineProps({
     }
 });
 
-const { data: items } = await useAsyncData(
+const { data: items, refresh } = await useAsyncData(
     props.requestId,
     async () => {
         const items = await directusGetItems(props.collection, props.requestParams);
@@ -30,7 +31,6 @@ const { data: items } = await useAsyncData(
     },
     { server: true }
 );
-
 
 </script>
 
@@ -45,7 +45,13 @@ const { data: items } = await useAsyncData(
 
             <div class="cards">
                 <div class="scroller flex gap20 marTop20">
-                    <CardMain v-for="item in items" :key="item.key" :item="item" :landscape="landscape" :likeButton="likeButton">
+                    <CardMain 
+                        v-for="item in items" :key="item.key" 
+                        :item="item" 
+                        :landscape="landscape" 
+                        :likeButton="likeButton"
+                        @refresh="refresh()"
+                    >
 
                         <component v-if="contentComponent" :is="contentComponent" :item="item" :landscape="landscape" />
                     </CardMain>

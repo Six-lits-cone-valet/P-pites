@@ -1,21 +1,13 @@
 <script setup>
-const { $directus, $createItem } = useNuxtApp();
-
-defineProps({
-    pepiteId: String,
-    likes: Number
+const props = defineProps({
+    likes: Number,
+    liked : Boolean
 });
-
-async function like() {
-    const response = await $directus.request($createItem('Likes', {
-        pepite: 
-    }))
-}
 
 </script>
 
 <template>
-    <button class="likeButton flex justifyEnd" @click.stop.prevent="like">
+    <button class="likeButton flex justifyEnd" @click.stop.prevent="$emit( liked ? 'deleteLike' : 'createLike')">
         <div class="background h100 flex alignCenter gap5">
             <p>
                 {{ likes }}

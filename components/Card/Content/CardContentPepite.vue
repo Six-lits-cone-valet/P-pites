@@ -16,7 +16,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="cardContentBox" :class="[landscape ? 'landscape' : 'portrait']" v-if="item">
+    <div class="cardContentBox grow" :class="[landscape ? 'landscape' : 'portrait']" v-if="item">
         <h1 class="box title cardTitle">
             {{ item.title }}
         </h1>
