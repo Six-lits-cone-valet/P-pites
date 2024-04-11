@@ -40,7 +40,7 @@
     overflow: scroll;
 }
 main {
-    width: min(100%, 1200px);
+    width: min(100%, 1600px);
     margin: auto;
     padding: 20px;
     

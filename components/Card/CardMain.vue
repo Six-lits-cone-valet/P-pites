@@ -6,6 +6,8 @@
 
 <script setup>
 import { directusBaseUrl } from '@/directus/directus.config.js'
+const { $directus, $createItem, $deleteItem } = useNuxtApp();
+const userState = useUserState();
 
 const props = defineProps({
     item: Object,
@@ -19,11 +21,51 @@ const props = defineProps({
     }
 })
 
+const emit = defineEmits(['refresh']);
+
+async function updateItem(collection, item) {
+    const response = await $directus.request($updateItem(
+        collection,
+        item.id,
+        item
+    ))
+}
+
+async function createLike() {
+    try {
+        const response = await $directus.request($createItem(
+            'Likes',
+            {
+                user: {
+                    id: userState.value.id
+                },
+                pepite: {
+                    id: props.item.id
+                }
+            }
+        ))
+
+        if(response ) emit('refresh');
+
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+async function deleteLike(likeId) {
+    try {
+        const response = $directus.request($deleteItem('Likes', props.item.likes.find(like => like.user === userState.value.id).id))
+
+        if(response ) emit('refresh');
+
+    } catch(error) {
+        console.error(error);
+    }
+}
 
 </script>
 
 <template>
-
     <NuxtLink :to="`/pepites/${item.slug}`" :class="[ landscape ? 'landscape' : 'portrait' ]" class="card flex pointer">
         <div class="frame relative">
             <picture>
@@ -33,9 +75,14 @@ const props = defineProps({
                 <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}?key=card-image`" alt="">
             </picture>
 
-            <CardLikeButton v-if="likeButton" :pepiteId="item.id" :likes="item.likes.length"/>
+            <CardLikeButton 
+                v-if="likeButton" 
+                :likes="item.likes.length" 
+                :liked="props.item.likes.some(like => like.user === userState.id)"
+                @createLike="createLike"
+                @deleteLike="deleteLike"
+            />
         </div>
-
         <slot>
             
 

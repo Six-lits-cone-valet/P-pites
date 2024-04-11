@@ -5,7 +5,9 @@ import {
     readItems, 
     readMe, 
     createUser,
-    createItem
+    createItem,
+    updateItem,
+    deleteItem
 } from '@directus/sdk';
 
 export default defineNuxtPlugin(() => {
@@ -18,7 +20,9 @@ export default defineNuxtPlugin(() => {
             getUserData,
             createUserAccount,
             logout,
-            createItem
+            createItem,
+            updateItem,
+            deleteItem
         },
     }
 })

@@ -80,6 +80,6 @@ body {
     font-size: 1.5rem; /* 24px */
 }
 
-input, button, fieldset {
+input, button, fieldset, textarea {
     all: unset;
 }
