@@ -20,10 +20,6 @@ a:visited {
     color: var(--gray-light);
 }
 
-a:hover {
-    color: var(--theme-color);
-}
-
 ul {
     list-style: none;
 }
