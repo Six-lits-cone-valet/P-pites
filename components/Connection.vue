@@ -8,11 +8,11 @@ const selectedFormType = ref('connection');
 async function handleSubmit(e) {
 
     if(selectedFormType.value === 'inscription') {
-        await $createUserAccount(e.target.firstName.value, e.target.lastName.value, e.target.email.value, e.target.password.value )
+        await $createUserAccount("boby", "mcgee", "bob@mcge.Com", "Pepites.29!" )
+        // await $createUserAccount(e.target.firstName.value, e.target.lastName.value, e.target.email.value, e.target.password.value )
     } else {
         await $userLogin(e.target.email.value, e.target.password.value);
     }
-    console.log(e.target.rememberMe.checked)
     if(e.target.rememberMe.checked) {
         localStorage.setItem('rememberMe', true);
     }

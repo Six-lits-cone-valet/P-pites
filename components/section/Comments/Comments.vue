@@ -1,10 +1,33 @@
 <script setup>
+import { directusGetItems } from '@/directus/directus.config';
 const { $diretusBaseUrl } = useNuxtApp();
 
 const props = defineProps({
-    comments: Array,
     pepiteId: String,
 })
+
+const requestParams = {
+    fields: [
+        '*', 
+        'user_created.first_name',
+        'user_created.avatar',
+    ],
+    filter: {
+        pepite: {
+            _eq: props.pepiteId
+        }
+    },
+    sort: '-date_created'
+}
+
+const { data: comments, refresh } = await useAsyncData(
+    `comments-${props.pepiteId}`,
+    async () => {
+        const items = await directusGetItems('Comments', requestParams);
+
+        return items;
+    }
+);
 
 </script>
 
@@ -13,9 +36,9 @@ const props = defineProps({
         <div class="comment" v-for="comment in comments" :key="comment.id">
 
             <div class="intro flex alignCenter gap10">
-                <img class="avatar" :src="`${$directusBaseUrl}/assets/${comment.user.avatar}`" alt="avatar" />
+                <img class="avatar" :src="`${$directusBaseUrl}/assets/${comment.user_created.avatar}`" alt="avatar" />
 
-                <p class="name"> {{ comment.user.first_name }} </p>
+                <p class="name"> {{ comment.user_created.first_name }} </p>
 
                 <p class="date"> {{ new Date(comment.date_created).toLocaleDateString () }} </p>
             </div>
@@ -26,7 +49,11 @@ const props = defineProps({
             </p>
         </div>
 
-        <SectionCommentsCreateComment :pepiteId="pepiteId" @refresh="$emit('refresh')" />
+        <div class="invitation" v-if="!comments.length">
+            Postez un premier commentaire !
+        </div>
+
+        <SectionCommentsCreateComment :pepiteId="pepiteId" @refresh="refresh" />
     </section>
 </template>
 
@@ -35,9 +62,13 @@ const props = defineProps({
     width: min(100%, 600px);
     padding: 30px;
 }
-.comment {
+.comment,
+.invitation {
     background-color: var(--gray-dimmed);
     padding: 20px;
+}
+.invitation {
+    font-weight: 700;
 }
 .avatar {
     width: 35px;

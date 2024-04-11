@@ -53,9 +53,8 @@ const { data: pepite, refresh } = await useAsyncData(
 
             <div class="commentBox">
                 <SectionComments 
-                :comments="pepite.comments" 
-                :pepiteId="pepite.id"
-                @refresh="refresh"/>
+                    :pepiteId="pepite.id"
+                />
             </div>
         </div>
     </div>
