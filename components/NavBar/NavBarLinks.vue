@@ -52,11 +52,11 @@ function showConnection() {
         <li class="button account" v-else>
             <NuxtLink class="flex column gap5 alignCenter" to="/profil">
                 <div class="frame">
-                    <svg viewBox="0 -960 960 960" class="shrink0 icon" v-if="!userState.avatarId">
+                    <!-- <svg viewBox="0 -960 960 960" class="shrink0 icon" v-if="!userState.avatarId">
                         <path :d="icons.account.path" />
-                    </svg>
+                    </svg> -->
 
-                    <img :src="`${$directusBaseUrl}/assets/${userState.avatarId}`" alt="" v-else>
+                    <Avatar />
                 </div>
 
                 <span class="">

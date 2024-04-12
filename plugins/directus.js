@@ -3,6 +3,7 @@ import {
     rest, 
     authentication, 
     readItems, 
+    readItem,
     readMe, 
     createUser,
     createItem,
@@ -17,6 +18,7 @@ export default defineNuxtPlugin(() => {
             directusBaseUrl,
             userLogin,
             readItems,
+            readItem,
             getUserData,
             createUserAccount,
             logout,
@@ -45,17 +47,16 @@ async function userLogin(email, password) {
     }
 }
 
-async function createUserAccount(firstName, lastName, email, password ) {
+async function createUserAccount(userData ) {
 
     try {
-        const response = await directus.request(createUser({
-            email: email,
-            password: password,
-            first_name: firstName,
-            last_name: lastName
-        }));
+        const response = await directus.request(createUser(userData));
 
-        // userLogin(response.email, password);
+        if(!response.errors) {
+            console.log(response);
+            userLogin(response.email, userData.password);
+        }
+
     } catch (error) {
         console.log("problemo")
         console.log(error);
@@ -81,7 +82,7 @@ function loadUserData(userData) {
         type: 'success',
     }
 
-    userState.value.avatarId = userData.avatar;
+    userState.value.avatarFileId = userData.frontEndAvatar;
     userState.value.firstName = userData.first_name;
     userState.value.lastName = userData.last_name;
     userState.value.email = userData.email;
