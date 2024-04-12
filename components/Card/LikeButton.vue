@@ -10,6 +10,7 @@ const props = defineProps({
     <button class="likeButton flex justifyEnd" @click.stop.prevent="$emit( liked ? 'deleteLike' : 'createLike')">
         <div class="background h100 flex alignCenter gap5">
             <p>
+                {{ liked }}
                 {{ likes }}
             </p>
             <svg viewBox="0 0 24 24" class="allEvents">
