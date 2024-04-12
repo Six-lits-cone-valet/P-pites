@@ -1,7 +1,7 @@
 export const useUserState = () => {
     return useState<{
         userLoggedIn: boolean,
-        avatarId: string,
+        avatarFileId: string,
         firstName: string,
         lastName: string,
         email: string,
@@ -10,7 +10,7 @@ export const useUserState = () => {
     }>('userState',
         () => ({
             userLoggedIn: false,
-            avatarId: '',
+            avatarFileId: '',
             firstName: '',
             lastName: '',
             email: '',

@@ -5,11 +5,28 @@ const appState = useAppState();
 
 const selectedFormType = ref('connection');
 
+const selectedAvararId = ref(null);
+
+function handleAvarSelection(avatarId) {
+    console.log(avatarId)
+    selectedAvararId.value = avatarId;
+}
+
 async function handleSubmit(e) {
 
     if(selectedFormType.value === 'inscription') {
-        await $createUserAccount("boby", "mcgee", "bob@mcge.Com", "Pepites.29!" )
-        // await $createUserAccount(e.target.firstName.value, e.target.lastName.value, e.target.email.value, e.target.password.value )
+
+        const userData = {
+            first_name: e.target.firstName.value,
+            last_name: e.target.lastName.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
+            frontEndAvatar: selectedAvararId.value
+        }
+
+
+        console.log(userData)
+        await $createUserAccount(userData);
     } else {
         await $userLogin(e.target.email.value, e.target.password.value);
     }
@@ -66,6 +83,10 @@ onMounted(() => {
                 <input type="checkbox" name="rememberMe" id="rememberMe">
                 <label for="rememberMe">Rester connecter</label>
             </fieldset>
+
+            <div  v-if="selectedFormType === 'inscription'">
+                <AuthenticationAvatar @selection="handleAvarSelection" :activeAvatarId="selectedAvararId"/>
+            </div>
 
             <input class="go pointer" type="submit" value="Go" @click.stop>
         </form>
