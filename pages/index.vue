@@ -15,6 +15,7 @@ const requestParamsPepites = {
     ],
     sort: '-date_created',
     limit: 4,
+    offset: 1,
 }
 
 const requestParamsCities = {
@@ -32,7 +33,7 @@ const requestParamsCategories = {
 </script>
 
 <template>
-    <!--<h1>Accueil</h1>-->
+    <SectionWelcome />
 
     <!-- la dernière pépite -->
     <SectionCardViewer 
