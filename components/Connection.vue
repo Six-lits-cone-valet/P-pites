@@ -14,6 +14,8 @@ function handleAvarSelection(avatarId) {
 
 async function handleSubmit(e) {
 
+    if( !formIValid(e.target)) return;
+
     if(selectedFormType.value === 'inscription') {
 
         const userData = {
@@ -35,13 +37,50 @@ async function handleSubmit(e) {
     }
 }
 
-onMounted(() => {
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            appState.showConnectionForm = false;
+function formIValid(form) {
+    const firstName = form.firstName.value.trim();
+    const lastName = form.lastName.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value.trim();
+    const avatarId = selectedAvararId.value;
+
+    if (selectedFormType.value === 'inscription') {
+        if (!firstName || firstName.length < 1 || firstName.length > 50) {
+            console.log('Invalid first name');
+            return;
         }
-    });
-})
+
+        if (!lastName || lastName.length < 1 || lastName.length > 50) {
+            console.log('Invalid last name');
+            return;
+        }
+    }
+
+    if (!email || !validateEmail(email) || email.length > 255) {
+        console.log('Invalid email');
+        return;
+    }
+
+    if (!password) {
+        console.log('Invalid password');
+        return;
+    }
+
+    if (!avatarId) {
+        console.log('Invalid avatar');
+        return;
+    }
+
+    return true;
+
+}
+
+function validateEmail(email) {
+    // Use a regular expression to validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 </script>
 
 <template>

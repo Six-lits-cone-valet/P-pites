@@ -30,13 +30,11 @@ const menuIsOpen = ref(false);
 <style scoped>
 nav {
     font-size: 13.5px;
-    /* font-style: italic; */
     font-weight: 600;
-    padding: 10px;
+    /* padding: 10px; */
     flex-direction: column;
     align-items: center;
     z-index: 1000;
-    
 }
 button.menu {
     background-color: transparent;
@@ -62,6 +60,7 @@ button.menu {
     transform: translateY(-50%);
 }
 .contentBox {
+    height: 100vh;
     background-color: var(--dark);
     padding: 10px;
     border-radius: 10px;
