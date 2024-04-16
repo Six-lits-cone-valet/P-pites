@@ -81,7 +81,7 @@ async function deleteLike(likeId) {
                 :liked="props.item.likes.some(like => like.user_created === userState.id)"
                 @createLike="createLike"
                 @deleteLike="deleteLike"
-            />
+            />            
         </div>
         <slot>
             

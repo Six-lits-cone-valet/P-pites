@@ -1,9 +1,9 @@
-<template id="nuxt">
+<template>
     <NavBarMain />
 
     <div id="appContent" class="grow relative">
-        <div class="absoluteFull">
-            <main class="w100">
+        <div class="scrollable absoluteFull">
+            <main class="">
                 <Toaster />
                 <NuxtPage />
 
@@ -36,13 +36,8 @@
 </style>
 
 <style scoped>
-#appContent .absoluteFull{
+.scrollable{
     overflow: scroll;
 }
-main {
-    width: min(100%, 1600px);
-    margin: auto;
-    padding: 20px;
-    
-}
+
 </style>

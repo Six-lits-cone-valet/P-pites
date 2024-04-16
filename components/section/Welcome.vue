@@ -1,6 +1,8 @@
 <template>
-    <div class="frame relative">
-        <img src="/images/food-trucks.jpg" alt="">
+    <div class="relative">
+        <div class="frame">
+            <img src="/images/food-trucks.jpg" alt="">
+        </div>
 
         <h1 class="fascinate-regular">
             Pépites
@@ -21,10 +23,20 @@
   font-weight: 400;
   font-style: normal;
 }
+.frame {
+    padding: 10px 20px;
+}
+img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 40px;
+}
 
 h1 {
     width: 100%;
-    font-size: 10vw;
+    font-size: clamp(3.5rem, 10vw, 9rem);
     line-height: 1em;
     text-align: center;
     position: absolute;
@@ -32,9 +44,11 @@ h1 {
     left: 0; 
 }
 .introText {
-    font-size: 1.5rem;
+    width: min(100%, 1200px);
+    font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 600;
     line-height: 1.5em;
     padding: clamp(10px, 10vw, 150px) clamp(10px, 10vw, 150px);
+    margin: auto;
 }
 </style>

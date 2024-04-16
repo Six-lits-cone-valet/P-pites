@@ -14,7 +14,6 @@ const { data: avatar, refresh } = await useAsyncData(
     async () => {
         const item = await $directus.request($readItem('Avatars', userState.value.avatarFileId, queryParams));
 
-        console.log(item)
         return item;
     },
     { server: true }

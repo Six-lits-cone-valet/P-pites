@@ -1,23 +1,66 @@
 <script setup>
 import { directusGetItems } from '@/directus/directus.config.js';
 
-const requestParamsPepites = {
-    fields: [
-        '*', 'category.text', 'business.*', 'business.city.*', 'likes.*'
-    ],
-    sort: '-date_created',
-    limit: 25,
-}
+
+
+const pepitesFilterState = usePepitesFilterState();
+
+const requestParams = computed(() => {
+    return {
+        fields: [
+            '*', 'category.text', 'business.*', 'business.city.*', 'likes.*', 'type.*'
+        ],
+        sort: '-date_created',
+        limit: 25,
+        filter: {
+            _and: [
+                pepitesFilterState.value.type
+            ]
+        }
+    }
+})
 
 const { data: pepites, refresh } = await useAsyncData(
-    "pepites",
+    "pepitesPage",
     async () => {
-        const items = await directusGetItems('Pepites', requestParamsPepites);
+        const items = await directusGetItems('Pepites', requestParams.value);
 
         return items;
-    },
-    { server: true }
+    }, {
+        server: true 
+    }
 );
+const filters = ref({});
+
+const keys = [
+    'city',
+    'business',
+    'type',
+    'category',
+    'size',
+    'options'
+]
+
+onMounted(() => {
+    const array = pepites.value;
+    
+    array.forEach(obj => {
+        obj.city = obj.business.city.name;
+        keys.forEach(key => {
+            if (!filters.value[key]) {
+                filters.value[key] = [];
+            }
+            if (obj[key]) {
+                const objStr = JSON.stringify(obj[key]);
+                if (!filters.value[key].map(JSON.stringify).includes(objStr)) {
+                    filters.value[key].push(obj[key]);
+                }
+            }
+        })
+    })
+    console.log(filters.value);
+})
+
 </script>
 
 
@@ -26,10 +69,8 @@ const { data: pepites, refresh } = await useAsyncData(
     <h1 class="marTop50">Les pépites</h1>
 
     <section class="pepites flex marTop50 w100">
-        <div class="filterBox">
-            <p class="r">filter 1</p>
-
-            <p class="r">filter 2</p>
+        <div class="filterBox flex column gap10">
+            <FiltersPepitesType @refresh="refresh" :filters="filters.type" />
         </div>
 
         <div class="cards flex wrap justifyEvenly">

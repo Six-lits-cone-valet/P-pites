@@ -41,4 +41,7 @@ watch(() => appState.value.toaster.show, (show) => {
 .toaster.active {
     transform: translateX(-50%) translateY(0);
 }
+.toaster.error {
+    background-color: var(--danger);
+}
 </style>

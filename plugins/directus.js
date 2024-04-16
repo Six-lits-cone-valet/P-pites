@@ -43,6 +43,13 @@ async function userLogin(email, password) {
 
         loadUserData(user);
     } catch (error) {
+        const appState = useAppState();
+        appState.value.toaster = {
+            show: true,
+            message: error.errors[0].message,
+            type: 'error',
+        }
+        
         console.log(error);
     }
 }
@@ -53,13 +60,17 @@ async function createUserAccount(userData ) {
         const response = await directus.request(createUser(userData));
 
         if(!response.errors) {
-            console.log(response);
             userLogin(response.email, userData.password);
         }
 
     } catch (error) {
-        console.log("problemo")
-        console.log(error);
+        const appState = useAppState();
+        appState.value.toaster = {
+            show: true,
+            message: error.errors[0].message,
+            type: 'error',
+        }
+        console.log(error)
     }
 }
 
@@ -91,7 +102,6 @@ function loadUserData(userData) {
 }
 
 async function logout() {
-    const appState = useAppState();
     const userState = useUserState();
 
     userState.value.userLoggedIn = false;
@@ -104,7 +114,7 @@ async function logout() {
 
     localStorage.removeItem('rememberMe');
 
-    const response = await directus.logout();
+    await directus.logout();
     
     const router = useRouter();
     router.push('/');
@@ -115,12 +125,12 @@ async function autoLogin() {
 
     if(rememberMe) {
         const response = await directus.refresh('cookie');
-        console.log(response);
 
         const user = await getUserData();
         loadUserData(user);
     }
     
 }
+
 autoLogin();
 
