@@ -35,6 +35,7 @@ const requestParamsCategories = {
 <template>
     <PageStructure showHeader>
         <template #header>
+            <!-- <HeaderIndex /> -->
             <SectionWelcome  />
         </template>
 

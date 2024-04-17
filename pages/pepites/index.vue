@@ -8,13 +8,15 @@ const pepitesFilterState = usePepitesFilterState();
 const requestParams = computed(() => {
     return {
         fields: [
-            '*', 'category.text', 'business.*', 'business.city.*', 'likes.*', 'type.*'
+            '*', 'category.*', 'business.*', 'business.city.*', 'likes.*', 'type.*'
         ],
         sort: '-date_created',
         limit: 25,
         filter: {
             _and: [
-                pepitesFilterState.value.type
+                pepitesFilterState.value.type,
+                pepitesFilterState.value.category,
+                // pepitesFilterState.value.options
             ]
         }
     }
@@ -71,9 +73,11 @@ onMounted(() => {
     <section class="pepites flex marTop50 w100">
         <div class="filterBox flex column gap10">
             <FiltersPepitesType @refresh="refresh" :filters="filters.type" />
+            <FiltersPepitesCategory @refresh="refresh" :filters="filters.category" />
+            <FiltersPepitesOptions @refresh="refresh" :filters="filters.options" />
         </div>
 
-        <div class="cards flex wrap justifyEvenly">
+        <div class="cards flex wrap justifyEvenly alignStart">
             <CardMain 
             v-for="pepite in pepites" :key="pepite.id"
             class="Pepites card"
