@@ -9,7 +9,7 @@
         </h1>
 
         <p class="introText">
-            Nous collectionnons les pépites culinaires qui qui nous ont séduits par leur originalité, leur qualité ou leur goût.  Une pépite peut être un sandwich particulièrement délicieux,  une sauce qui  accompagne votre steak-frite, une baguette vraiment croustillant et légè, un plat présentant un rapport qualité-prix exceptionnel ou encore une proposition osée proposant une nouvelle expérience culinaire qui sort des cahntier batus.  Nous cherchons à rendre hommage aux artisans culinaires qui mettent de la personnalité et de la passion dans ce qu'ils nous proposent à déguster.
+            Nous collectionnons les pépites culinaires qui nous ont séduits par leur originalité, leur qualité ou leur goût.  Une pépite peut être un sandwich particulièrement délicieux,  une sauce qui  accompagne votre steak-frites, une baguette vraiment croustillante et légère, un plat présentant un rapport qualité-prix exceptionnel ou encore une proposition osée pour une nouvelle expérience gastronomique qui sort des sentiers battus.  Nous cherchons à rendre hommage à tous les artisans qui mettent de la personnalité et de la passion dans leurs créations offertes à la dégustation.
         </p>
     </div>
     
