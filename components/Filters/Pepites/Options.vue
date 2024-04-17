@@ -4,30 +4,37 @@ import icons from '@/assets/icons.json'
 
 const emit = defineEmits(['refresh']);
 
-const props = defineProps({
-    filters: Array
-})
-
-const filteredFilters = computed(() => {
-    if(!props.filters) return [];
-    let uniqueValues = [...new Set(props.filters.flat())];
-    return uniqueValues;
-})
+const options = [
+    {
+        text: "A emporter",
+        value: "toGo"
+    },
+    {
+        text: "Sur place",
+        value: "eatIn"
+    },
+    {
+        text: "Livraison",
+        value: "delivery"
+    }
+]
 
 const selected = ref('');
 
-function handleClick(filter) {
-    if (filter === selected.value) {
+function handleClick(option) {
+
+    if (selected.value === option) {
         selected.value = '';
         pepitesFilterState.value.options = {};
     } else {
-        selected.value = filter;
+        selected.value = option;
         pepitesFilterState.value.options = {
             options: {
-                _in: filter
+                _contains: option
             }
         }
     }
+    
     emit('refresh');
 }
 
@@ -38,17 +45,17 @@ function handleClick(filter) {
         <p class="filterTitle">Services</p>
 
         <button 
-            v-for="filter in filteredFilters" :key="filter"
+            v-for="option in options" :key="option.value"
             class="flex alignCenter gap5"
-            :class="{ 'active' : selected === filter }" 
-            @click.prevent="handleClick(filter)"
+            :class="{ 'active' : selected === option.value }" 
+            @click.prevent="handleClick(option.value)"
         >
             <svg  viewBox="0 -960 960 960">
-                <path :d="icons[filter].path" />
+                <path :d="icons[option.value].path" />
             </svg>
 
             <span>
-                {{ icons[filter].text }}
+                {{ icons[option.value].text }}
             </span>
         </button>
     </div>

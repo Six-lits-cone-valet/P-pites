@@ -1,14 +1,20 @@
 <script setup>
 import { directusGetItems } from '@/directus/directus.config.js';
 
-
-
 const pepitesFilterState = usePepitesFilterState();
 
 const requestParams = computed(() => {
     return {
         fields: [
-            '*', 'category.*', 'business.*', 'business.city.*', 'likes.*', 'type.*'
+            '*', 
+            'category.*', 
+            'business.*', 
+            'business.city.*', 
+            'likes.*', 
+            'type.*',
+            'filter_type.*',
+            'filter_size.*',
+            'filter_options.Pepites_filters_id.*'
         ],
         sort: '-date_created',
         limit: 25,
@@ -16,7 +22,8 @@ const requestParams = computed(() => {
             _and: [
                 pepitesFilterState.value.type,
                 pepitesFilterState.value.category,
-                // pepitesFilterState.value.options
+                pepitesFilterState.value.size,
+                pepitesFilterState.value.options
             ]
         }
     }
@@ -32,36 +39,6 @@ const { data: pepites, refresh } = await useAsyncData(
         server: true 
     }
 );
-const filters = ref({});
-
-const keys = [
-    'city',
-    'business',
-    'type',
-    'category',
-    'size',
-    'options'
-]
-
-onMounted(() => {
-    const array = pepites.value;
-    
-    array.forEach(obj => {
-        obj.city = obj.business.city.name;
-        keys.forEach(key => {
-            if (!filters.value[key]) {
-                filters.value[key] = [];
-            }
-            if (obj[key]) {
-                const objStr = JSON.stringify(obj[key]);
-                if (!filters.value[key].map(JSON.stringify).includes(objStr)) {
-                    filters.value[key].push(obj[key]);
-                }
-            }
-        })
-    })
-    console.log(filters.value);
-})
 
 </script>
 
@@ -72,9 +49,11 @@ onMounted(() => {
 
     <section class="pepites flex marTop50 w100">
         <div class="filterBox flex column gap10">
-            <FiltersPepitesType @refresh="refresh" :filters="filters.type" />
-            <FiltersPepitesCategory @refresh="refresh" :filters="filters.category" />
-            <FiltersPepitesOptions @refresh="refresh" :filters="filters.options" />
+            <FiltersPepitesType @refresh="refresh" />
+            <FiltersPepitesSize @refresh="refresh" />
+            <FiltersPepitesOptions @refresh="refresh" />
+            <FiltersPepitesCategory @refresh="refresh" />
+            
         </div>
 
         <div class="cards flex wrap justifyEvenly alignStart">

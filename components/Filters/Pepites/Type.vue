@@ -2,9 +2,17 @@
 const pepitesFilterState = usePepitesFilterState();
 
 const emit = defineEmits(['refresh']);
-defineProps({
-    filters: Array
-})
+const types = [
+    {
+        text: "Sucré",
+        value: "sweet"
+    },
+    {
+        text: "Salé",
+        value: "savory"
+    }
+]
+
 
 const selected = ref('');
 
@@ -16,9 +24,7 @@ function handleClick(type) {
         selected.value = type;
         pepitesFilterState.value.type = {
             type: {
-                value: {
-                    _eq: type
-                }
+                _eq: type
             }
         }
     }
@@ -28,14 +34,14 @@ function handleClick(type) {
 </script>
 
 <template>
-    <div class="box ">
+    <div class="box flex column gap5">
         <p class="filterTitle">Type</p>
         <button 
-            v-for="filter in filters" :key="filter.id"
-            :class="{ 'active' : selected === filter.value }" 
-            @click.prevent="handleClick(filter.value)"
+            v-for="type in types" :key="type.value"
+            :class="{ 'active' : selected === type.value }" 
+            @click.prevent="handleClick(type.value)"
         >
-            {{ filter.text }}
+            {{ type.text }}
         </button>
     </div>
 </template>

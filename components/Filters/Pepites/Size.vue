@@ -1,33 +1,33 @@
 <script setup>
 const pepitesFilterState = usePepitesFilterState();
-const { $directus, $readItems } = useNuxtApp();
 
 const emit = defineEmits(['refresh']);
-
-const { data: categories } = await useAsyncData(
-    "categories",
-    async () => {
-        const items = await $directus.request($readItems('Categories'));
-
-        return items;
-    }, {
-        server: true 
+const sizes = [
+    {
+        text: "Petit",
+        value: "small"
+    },
+    {
+        text: "Moyen",
+        value: "medium"
+    },
+    {
+        text: "Grand",
+        value: "large"
     }
-);
+]
 
 const selected = ref('');
 
-function handleClick(cat) {
-    if (cat === selected.value) {
+function handleClick(size) {
+    if (size === selected.value) {
         selected.value = '';
-        pepitesFilterState.value.category = {};
+        pepitesFilterState.value.size = {};
     } else {
-        selected.value = cat;
-        pepitesFilterState.value.category = {
-            category: {
-                value: {
-                    _eq: cat
-                }
+        selected.value = size;
+        pepitesFilterState.value.size = {
+            size: {
+                _eq: size
             }
         }
     }
@@ -38,14 +38,13 @@ function handleClick(cat) {
 
 <template>
     <div class="box flex column gap5">
-        <p class="filterTitle">Catégories</p>
-
+        <p class="filterTitle">Taille</p>
         <button 
-            v-for="cat in categories" :key="cat.id"
-            :class="{ 'active' : selected === cat.value }" 
-            @click.prevent="handleClick(cat.value)"
+            v-for="size in sizes" :key="size.value"
+            :class="{ 'active' : selected === size.value }" 
+            @click.prevent="handleClick(size.value)"
         >
-            {{ cat.text }}
+            {{ size.text }}
         </button>
     </div>
 </template>
@@ -56,6 +55,7 @@ function handleClick(cat) {
     font-weight: 600;
     padding-bottom: 5px;
     border-bottom: 1px solid var(--theme-color);
+    margin-bottom: 10px;
 }
 button {
     font-size: 1rem;
