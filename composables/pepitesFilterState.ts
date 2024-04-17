@@ -3,11 +3,15 @@ export const usePepitesFilterState = () => {
         type: Object,
         category: Object,
         options: Object,
+        size: Object,
     }>('pepitesFilterState',
         () => ({
             type: {},
             category: {},
-            options: {}
+            options: {
+                _and: []
+            },
+            size: {},
         })
     );
 }
