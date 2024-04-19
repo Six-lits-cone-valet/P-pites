@@ -87,11 +87,9 @@ function loadUserData(userData) {
     const appState = useAppState();
     appState.value.showConnectionForm = false;
 
-    appState.value.toaster = {
-        show: true,
-        message: 'Vous êtes connecté',
-        type: 'success',
-    }
+    const { $activateToaster } = useNuxtApp();
+    
+    $activateToaster("Bonjour " + userData.first_name + " !", "success");
 
     userState.value.avatarFileId = userData.frontEndAvatar;
     userState.value.firstName = userData.first_name;
@@ -124,7 +122,12 @@ async function autoLogin() {
     const rememberMe = localStorage.getItem('rememberMe');
 
     if(rememberMe) {
-        const response = await directus.refresh('cookie');
+        try {
+            const response = await directus.refresh('cookie');
+        } catch (error) {
+            console.log(error);
+            localStorage.removeItem('rememberMe');
+        }
 
         const user = await getUserData();
         loadUserData(user);

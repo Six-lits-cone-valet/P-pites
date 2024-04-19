@@ -1,8 +1,10 @@
 <script setup>
 import icons from '@/assets/icons.json'
 const { $directusBaseUrl, $directus, $createUserAccount } = useNuxtApp();
+const { $activateToaster} = useNuxtApp();
 
 const userState = useUserState();
+const appState = useAppState();
 
 const links = [
     {
@@ -17,9 +19,8 @@ const props = defineProps({
     currentUser: Object
 })
 
-const appState = useAppState();
-
 function showConnection() {
+    appState.value.showMenu = false
     appState.value.showConnectionForm = true;
 }
 
@@ -28,12 +29,14 @@ function showConnection() {
 <template>
     <div class="flex column gap20 marTop50">
         <li class="button flex column alignCenter gap5" v-for="link in links" :key="link.id" :class="link.icon">
-            <svg viewBox="0 -960 960 960" class="icon shrink0">
-                <path :d="icons[link.icon].path" />
-            </svg>
-
-            <NuxtLink :to="link.href">
-                {{ link.text }}
+            <NuxtLink :to="link.href" class="flex column alignCenter gap5" @click="appState.showMenu = false">
+                <svg viewBox="0 -960 960 960" class="icon shrink0">
+                    <path :d="icons[link.icon].path" />
+                </svg>
+            
+                <span>
+                    {{ link.text }}
+                </span>
             </NuxtLink>
         </li>
 

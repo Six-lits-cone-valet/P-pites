@@ -34,30 +34,40 @@ const { data: pepite, refresh } = await useAsyncData(
 </script>
 
 <template>
-    <div v-if="pepite" class="container flex marTop100">
-        <div class="images">
-            <img 
-                :src="`${$directusBaseUrl}/assets/${pepite.image}`" 
-                alt="photo" 
-            />
+    <PageStructure showHeader v-if="pepite">
+        <template #header>
+            <h1 class="mainWidth">
+                {{ pepite.title }}
+            </h1>
+        </template>
 
-            <img 
-                v-for="photo in pepite.photos" :key="photo.id" 
-                :src="`${$directusBaseUrl}/assets/${photo.directus_files_id}`" 
-                alt="photo" 
-            />
-        </div>
+        <template #scrollableContent>
+            <div class="container flex marTop100">
+                <div class="images">
+                    <img 
+                        :src="`${$directusBaseUrl}/assets/${pepite.image}`" 
+                        alt="photo" 
+                    />
 
-        <div class="box marTop50 grow">
-            <CardContentPepite :item="pepite" landscape fullText />
+                    <img 
+                        v-for="photo in pepite.photos" :key="photo.id" 
+                        :src="`${$directusBaseUrl}/assets/${photo.directus_files_id}`" 
+                        alt="photo" 
+                    />
+                </div>
 
-            <div class="commentBox">
-                <SectionComments 
-                    :pepiteId="pepite.id"
-                />
-            </div>
-        </div>
-    </div>
+                <div class="box marTop50 grow">
+                    <CardContentPepite :item="pepite" landscape fullText />
+
+                    <div class="commentBox">
+                        <SectionComments 
+                            :pepiteId="pepite.id"
+                        />
+                    </div>
+                </div>
+            </div>  
+        </template>
+    </PageStructure>
 </template>
 
 <style scoped>

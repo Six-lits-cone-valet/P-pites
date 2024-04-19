@@ -1,6 +1,15 @@
+<script setup>
+const appState = useAppState();
+
+function handleClick() {
+    appState.value.showMenu = !appState.value.showMenu;
+    appState.value.showConnectionForm = false;
+}
+</script>
+
 <template>
     <li>
-        <NuxtLink to="/" class="flex column alignCenter">
+        <NuxtLink to="/" class="flex column alignCenter" @click="handleClick">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
             <!-- Pizza slice (triangle) -->
                 <polygon points="25,5 45,45 5,45" fill="orange" />

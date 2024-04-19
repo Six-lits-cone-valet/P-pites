@@ -1,23 +1,7 @@
 <script setup>
 const appState = useAppState();
-
-watch(() => appState.value.toaster.show, (show) => {
-    if (show) {
-        setTimeout(() => {
-            appState.value.toaster.show =  false;
-        }, 3000);
-
-        setTimeout(() => {
-            appState.value.toaster = {
-                show: false,
-                message: "",
-                type: ""
-            };
-        }, 4000);
-    }
-});
-
 </script>
+
 <template>
     <p class="toaster" :class="[appState.toaster.type, {'active' : appState.toaster.show}]">
         {{ appState.toaster.message }}
