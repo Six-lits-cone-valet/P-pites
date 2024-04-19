@@ -1,6 +1,5 @@
 <script setup>
-import { directusGetItems } from '@/directus/directus.config.js';
-const { $directusBaseUrl } = useNuxtApp();
+const { $directusBaseUrl, $directus, $readItems } = useNuxtApp();
 const requestParams = {
         fields: [
             '*'
@@ -10,7 +9,7 @@ const requestParams = {
 const { data: images } = await useAsyncData(
     "headerImages",
     async () => {
-        const items = await directusGetItems('Header_images', requestParams);
+        const items = await $directus.request($readItems('Header_images', requestParams));
 
         const images = {
 

@@ -1,5 +1,5 @@
 <script setup>
-import { directusGetItems } from '@/directus/directus.config.js';
+const { $directus, $readItems } = useNuxtApp();
 
 
 const props = defineProps({
@@ -25,7 +25,7 @@ const props = defineProps({
 const { data: items, refresh } = await useAsyncData(
     props.requestId,
     async () => {
-        const items = await directusGetItems(props.collection, props.requestParams);
+        const items = await $directus.request($readItems(props.collection, props.requestParams));
 
         return items;
     },

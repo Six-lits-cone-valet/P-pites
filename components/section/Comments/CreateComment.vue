@@ -4,7 +4,7 @@ const { $directus, $createItem } = useNuxtApp();
 const userState = useUserState();
 
 const props = defineProps({
-    pepiteId: String
+    pepiteId: Number
 })
 
 const emit = defineEmits(['refresh']);

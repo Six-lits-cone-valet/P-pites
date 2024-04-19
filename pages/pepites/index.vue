@@ -1,6 +1,8 @@
 <script setup>
-import { directusGetItems } from '@/directus/directus.config.js';
 import icons from '@/assets/icons.json';
+
+const { $directus, $readItems } = useNuxtApp();
+
 const pepitesFilterState = usePepitesFilterState();
 
 const requestParams = computed(() => {
@@ -32,7 +34,7 @@ const requestParams = computed(() => {
 const { data: pepites, refresh } = await useAsyncData(
     "pepitesPage",
     async () => {
-        const items = await directusGetItems('Pepites', requestParams.value);
+        const items = await $directus.request($readItems('Pepites', requestParams.value));
 
         return items;
     }, {

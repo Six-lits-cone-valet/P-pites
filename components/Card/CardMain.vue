@@ -5,8 +5,7 @@
  -->
 
 <script setup>
-import { directusBaseUrl } from '@/directus/directus.config.js'
-const { $directus, $createItem, $deleteItem } = useNuxtApp();
+const { $directusBaseUrl, $directus, $createItem, $deleteItem } = useNuxtApp();
 const userState = useUserState();
 
 const props = defineProps({
@@ -72,7 +71,7 @@ async function deleteLike(likeId) {
                 <!-- should be a .webp format -->
                 <!-- <source :srcset="`${directusBaseUrl}assets/${item.image}?key=card-image`"> -->
                 <!-- should be a .jpg format -->
-                <img class="objectFitCover" :src="`${directusBaseUrl}assets/${item.image}`" alt="">
+                <img class="objectFitCover" :src="`${$directusBaseUrl}/assets/${item.image}`" alt="">
             </picture>
 
             <CardLikeButton 

@@ -1,9 +1,12 @@
 <script setup>
-import { directusGetItems } from '@/directus/directus.config';
-const { $diretusBaseUrl } = useNuxtApp();
+import icons from '@/assets/icons.json';
+const { $diretusBaseUrl, $directus, $readItems } = useNuxtApp();
+
+const userState = useUserState();
+const appState = useAppState();
 
 const props = defineProps({
-    pepiteId: String,
+    pepiteId: Number,
 })
 
 const requestParams = {
@@ -23,7 +26,7 @@ const requestParams = {
 const { data: comments, refresh } = await useAsyncData(
     `comments-${props.pepiteId}`,
     async () => {
-        const items = await directusGetItems('Comments', requestParams);
+        const items = await $directus.request($readItems('Comments', requestParams));
 
         return items;
     }
@@ -33,7 +36,7 @@ const { data: comments, refresh } = await useAsyncData(
 
 <template>
     <section class="container flex column gap20">
-        <div class="comment" v-for="comment in comments" :key="comment.id">
+        <div v-if="comments.length" class="comment" v-for="comment in comments" :key="comment.id">
 
             <div class="intro flex alignCenter gap10">
                 <img class="avatar" :src="`${$directusBaseUrl}/assets/${comment.user_created.avatar}`" alt="avatar" />
@@ -49,8 +52,28 @@ const { data: comments, refresh } = await useAsyncData(
             </p>
         </div>
 
-        <div class="invitation" v-if="!comments.length">
-            Postez un premier commentaire !
+        <div v-if="!comments.length">
+            <div class="invitation" v-if="userState.userLoggedIn">
+                Postez un premier commentaire !
+            </div>
+
+            <div class="invitation flex alignCenter gap20" v-else>
+                <span>
+                    Connectez-vous pour poster un commentaire !
+                </span>
+
+                <button @click="appState.showConnectionForm = true">
+                    <div class="flex column gap5 alignCenter" v-if="!appState.userLoggedIn">
+                        <svg viewBox="0 -960 960 960" class="icon shrink0">
+                            <path :d="icons.login.path" />
+                        </svg>
+
+                        <span>
+                            se connecter
+                        </span>
+                    </div>
+                </button>
+            </div>
         </div>
 
         <SectionCommentsCreateComment :pepiteId="pepiteId" @refresh="refresh" />
@@ -82,5 +105,16 @@ const { data: comments, refresh } = await useAsyncData(
 .date {
     font-size: 0.8rem;
     font-weight: 600;
+}
+button {
+    font-size: 0.8rem;
+    background-color: var(--theme-color-account);
+    padding: 10px;
+    border-radius: 5px;
+}
+button svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
 }
 </style>
