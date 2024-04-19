@@ -31,7 +31,7 @@ const menuIsOpen = ref(false);
 nav {
     font-size: 13.5px;
     font-weight: 600;
-    /* padding: 10px; */
+    padding: 15px;
     flex-direction: column;
     align-items: center;
     z-index: 1000;

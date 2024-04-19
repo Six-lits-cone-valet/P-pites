@@ -1,6 +1,6 @@
 <script setup>
 import { directusGetItems } from '@/directus/directus.config.js';
-
+import icons from '@/assets/icons.json';
 const pepitesFilterState = usePepitesFilterState();
 
 const requestParams = computed(() => {
@@ -40,47 +40,83 @@ const { data: pepites, refresh } = await useAsyncData(
     }
 );
 
+const showFilters = ref(false);
+function toggleFilters() {
+    showFilters.value = !showFilters.value;
+}
+
 </script>
 
 
 <template>
 
-    <h1 class="marTop50">Les pépites</h1>
+    <PageStructure :showHeader="true">
+        <template #header>
+            <h1 class="marTop50 mainWidth">Les pépites</h1>
 
-    <section class="pepites flex marTop50 w100">
-        <div class="filterBox flex column gap10">
-            <FiltersPepitesType @refresh="refresh" />
-            <FiltersPepitesSize @refresh="refresh" />
-            <FiltersPepitesOptions @refresh="refresh" />
-            <FiltersPepitesCategory @refresh="refresh" />
-            
-        </div>
+            <div class="bar flex justifyEnd mainWidth">
+                <button class="filterButton pointer" @click.prevent="toggleFilters">
+                    <svg class="icon tune" viewBox="0 -960 960 960">
+                        <path :d="icons.tune.path"/>
+                    </svg>
+                </button>
 
-        <div class="cards flex wrap justifyEvenly alignStart">
-            <CardMain 
-            v-for="pepite in pepites" :key="pepite.id"
-            class="Pepites card"
-            :item="pepite" 
-            likeButton
-            @refresh="refresh()"
-        >
-                <CardContentPepite :item="pepite" />
-            </CardMain>
-        </div>
-    </section>
+                <div class="filterBox flex column gap10" :class="{ 'active' : showFilters}">
+                    <div class="flex justifyEnd">
+                        <svg class="icon" viewBox="0 -960 960 960"  @click.prevent="toggleFilters">
+                            <path :d="icons.close.path"/>
+                        </svg>
+                    </div>
+                    <FiltersPepitesType @refresh="refresh" />
+                    <FiltersPepitesSize @refresh="refresh" />
+                    <FiltersPepitesOptions @refresh="refresh" />
+                    <FiltersPepitesCategory @refresh="refresh" />
+                </div>
+            </div>
+        </template>
 
+        <template #scrollableContent>
+            <section class="pepites marTop50 w100">
+                <div class="cards flex wrap justifyEvenly alignStart">
+                    <CardMain 
+                    v-for="pepite in pepites" :key="pepite.id"
+                    class="Pepites card"
+                    :item="pepite" 
+                    likeButton
+                    @refresh="refresh()"
+                >
+                        <CardContentPepite :item="pepite" />
+                    </CardMain>
+                </div>
+            </section>
+        </template>
+    </PageStructure>
 </template>
 
 <style scoped>
 .filterBox {
+    height: 100vh;
     align-self: flex-start;
     flex-shrink: 0;
     padding: 10px;
     width: 200px;
     background-color: var(--darker);
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow: scroll;
+    z-index: 100000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
 }
-section {
-    row-gap: 50px;
+.filterBox.active {
+    transform: translateX(0%);
+}
+.icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--gray-light);
+    cursor: pointer;
 }
 .cards {
     flex-grow: 1;
@@ -93,13 +129,6 @@ section {
     
 }
 
-@media (max-width: 930px) {
-    .filterBox {
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-}
 @media (max-width: 350px) {
     .filterBox {
         width: 100vw;
