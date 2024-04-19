@@ -23,14 +23,21 @@ defineProps({
     </div>
 </template>
 
+<style>
+.mainWidth {
+    width: min(100%, 1200px);
+    margin-inline: auto;
+}
+</style>
+
 <style scoped>
 .headerBox {
     width: 100%;
+    padding: 15px;
 }
 
-.mainWidth {
-    width: min(100%, 1200px);
+/* .mainWidth {
     padding: 5px;
     margin: 50px auto;
-}
+} */
 </style>
