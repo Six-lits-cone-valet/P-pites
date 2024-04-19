@@ -1,25 +1,26 @@
 <script setup>
 import icons from '@/assets/icons.json'
+const appState = useAppState();
 
-let currentUser = ref({});
-
-const menuIsOpen = ref(false);
-
+function handleClick() {
+    appState.value.showMenu = !appState.value.showMenu;
+    appState.value.showConnectionForm = false;
+}
 </script>
 
 <template>
     <nav class="relative">
-        <button class="menu flex alignCenter pointer relative" @click="menuIsOpen = !menuIsOpen">
+        <button class="menu flex alignCenter pointer relative" @click="handleClick">
             <svg viewBox="0 -960 960 960" class="icon shrink0">
                 <path :d="icons.menu.path" />
             </svg>
 
             <svg viewBox="0 -960 960 960" class="arrow shrink0">
-                <path :d="menuIsOpen ? icons.arrowLeft.path : icons.arrowRight.path" />
+                <path :d="appState.showMenu ? icons.arrowLeft.path : icons.arrowRight.path" />
             </svg>
         </button>
 
-        <ul class="contentBox column" :class="{ 'active' : menuIsOpen }">
+        <ul class="contentBox column" :class="{ 'active' : appState.showMenu }">
             <NavBarLogo />
 
             <NavBarLinks />

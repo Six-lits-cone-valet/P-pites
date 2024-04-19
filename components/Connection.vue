@@ -13,10 +13,8 @@ function handleAvarSelection(avatarId) {
 }
 
 async function handleSubmit(e) {
-
-    if( !formIValid(e.target)) return;
-
     if(selectedFormType.value === 'inscription') {
+        if( !formIValid(e.target)) return;
 
         const userData = {
             first_name: e.target.firstName.value,
@@ -127,7 +125,7 @@ function validateEmail(email) {
                 <AuthenticationAvatar @selection="handleAvarSelection" :activeAvatarId="selectedAvararId"/>
             </div>
 
-            <input class="go pointer" type="submit" value="Go" @click.stop>
+            <input class="submitButton go pointer" type="submit" value="Go" @click.stop>
         </form>
     </div>
   </template>
@@ -207,6 +205,9 @@ input[type="checkbox"]:checked::after {
 
 input.go {
     align-self: center;
+    background-color: var(--theme-color-pepite);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 </style>
-  
