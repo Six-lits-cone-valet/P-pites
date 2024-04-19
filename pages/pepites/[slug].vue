@@ -1,5 +1,5 @@
 <script setup>
-import { directusGetItems, directusBaseUrl } from '@/directus/directus.config.js';
+const { $directusBaseUrl, $directus, $readItems } = useNuxtApp();
 
 const route = useRoute();
 
@@ -24,7 +24,7 @@ const requestParams = {
 const { data: pepite, refresh } = await useAsyncData(
     route.params.slug,
     async () => {
-        const items = await directusGetItems('Pepites', requestParams);
+        const items = await $directus.request($readItems('Pepites', requestParams));
 
         return items[0];
     },
@@ -37,13 +37,13 @@ const { data: pepite, refresh } = await useAsyncData(
     <div v-if="pepite" class="container flex marTop100">
         <div class="images">
             <img 
-                :src="`${directusBaseUrl}assets/${pepite.image}`" 
+                :src="`${$directusBaseUrl}/assets/${pepite.image}`" 
                 alt="photo" 
             />
 
             <img 
                 v-for="photo in pepite.photos" :key="photo.id" 
-                :src="`${directusBaseUrl}assets/${photo.directus_files_id}`" 
+                :src="`${$directusBaseUrl}/assets/${photo.directus_files_id}`" 
                 alt="photo" 
             />
         </div>
