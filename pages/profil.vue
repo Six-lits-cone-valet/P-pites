@@ -17,6 +17,7 @@ const handleAvatarChange = (event) => {
         avatarFile.value = URL.createObjectURL(file);
     }
 };
+
 const saveProfile = () => {
     // Logique pour sauvegarder le profil mis à jour
     console.log({
@@ -39,6 +40,7 @@ const saveProfile = () => {
         <template #scrollableContent>
             <div class="mainWidth">
                 <form @submit.prevent="saveProfile" class="profile-form">
+                    <!-- Champs de profil -->
                     <div class="form-group">
                         <label for="firstName">Prénom</label>
                         <input type="text" id="firstName" v-model="userState.firstName" readonly>
@@ -64,10 +66,10 @@ const saveProfile = () => {
                         <label>Genre</label>
                         <div class="radio-group">
                             <label>
-                                <input type="radio" value="male" v-model="gender.value"> Homme
+                                <input type="radio" value="male" v-model="gender"> Homme
                             </label>
                             <label>
-                                <input type="radio" value="female" v-model="gender.value"> Femme
+                                <input type="radio" value="female" v-model="gender"> Femme
                             </label>
                         </div>
                     </div>
@@ -87,9 +89,10 @@ const saveProfile = () => {
                         <label for="favouriteFood">Plat préféré</label>
                         <textarea id="favouriteFood" v-model="favouriteFood"></textarea>
                     </div>
-                    <button class="save-button" @click="saveProfile">Enregistrer</button>
+                    <button class="save-button">Enregistrer</button>
                 </form>
 
+                <!-- Bouton de déconnexion -->
                 <div class="button logout pointer" @click="$logout">
                     <div class="flex column gap5 alignCenter">
                         <svg viewBox="0 -960 960 960" class="icon shrink0">
