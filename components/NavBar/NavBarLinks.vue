@@ -8,15 +8,15 @@ const appState = useAppState();
 
 const links = [
     {
-        id: 0,
-        text: "Nos pépites",
-        href: "/pepites",
-        icon: "eatIn"
-    },
-    {
         id: 1,
         text: "Accueil",
         href: "/",
+        icon: "eatIn"
+    },
+    {
+        id: 0,
+        text: "Nos pépites",
+        href: "/pepites",
         icon: "eatIn"
     }
 ]
