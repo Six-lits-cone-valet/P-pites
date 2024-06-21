@@ -81,6 +81,9 @@ function showConnection() {
     padding: 10px 5px;
     border-radius: 5px;
 }
+.button.home {
+    background-color: var(--theme-color-home);
+}
 .button.eatIn {
     background-color: var(--theme-color-pepite);
 }
