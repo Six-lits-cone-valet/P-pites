@@ -11,7 +11,7 @@ const links = [
         id: 1,
         text: "Accueil",
         href: "/",
-        icon: "eatIn"
+        icon: "home"
     },
     {
         id: 0,
