@@ -8,6 +8,12 @@ const appState = useAppState();
 
 const links = [
     {
+        id: 1,
+        text: "Accueil",
+        href: "/",
+        icon: "home"
+    },
+    {
         id: 0,
         text: "Nos pépites",
         href: "/pepites",
@@ -74,6 +80,9 @@ function showConnection() {
 .button {
     padding: 10px 5px;
     border-radius: 5px;
+}
+.button.home {
+    background-color: var(--theme-color-home);
 }
 .button.eatIn {
     background-color: var(--theme-color-pepite);
