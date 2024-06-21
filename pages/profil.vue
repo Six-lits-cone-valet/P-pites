@@ -91,11 +91,13 @@ const saveProfile = () => {
                     <button type="submit" class="save-button">Enregistrer</button>
                 </form>
 
-                <div class="button pointer" @click="$logout">
-                    <svg viewBox="0 0 24 24" class="icon shrink0">
-                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.71-11.71L9.88 12l1.41 1.41L12 13.88l2.71 2.71 1.41-1.41L13.88 12l2.71-2.71-1.41-1.41L12 10.12 10.29 7.41 8.88 8.82 10.12 10l-1.41 1.41z"></path>
-                    </svg>
-                    Se déconnecter
+                <div class="button logout pointer" @click="$logout">
+                    <div class="flex column gap5 alignCenter">
+                        <svg viewBox="0 -960 960 960" class="icon shrink0">
+                            <path :d="icons.logout.path" />
+                        </svg>
+                        <span>Se déconnecter</span>
+                    </div>
                 </div>
             </div>
         </template>
