@@ -1,6 +1,22 @@
 <script setup>
+import icons from '@/assets/icons.json'
 const { $directusBaseUrl, $logout } = useNuxtApp();
 const userState = useUserState();
+
+const links = [
+    {
+        id: 1,
+        text: "Accueil",
+        href: "/",
+        icon: "home"
+    },
+    {
+        id: 0,
+        text: "Nos pépites",
+        href: "/pepites",
+        icon: "eatIn"
+    }
+]
 </script>
 
 <template>
@@ -22,7 +38,11 @@ const userState = useUserState();
                 </ul>
 
                 <div class="button pointer" @click="$logout">
-                    Se déconnecter
+                    
+                <svg viewBox="0 -960 960 960" class="icon shrink0">
+                    <path :d="icons.login.path" />
+                </svg>   
+            Se déconnecter
                 </div>
             </div>
         </template>
@@ -30,6 +50,13 @@ const userState = useUserState();
 </template>
 
 <style scoped>
+.button {
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+.button.connection {
+    background-color: var(--theme-color-account);
+}
 img {
     width: min(100%, 200px);
 }
