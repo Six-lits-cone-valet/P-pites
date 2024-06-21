@@ -18,6 +18,11 @@ const handleAvatarChange = (event) => {
     }
 };
 
+function saveProfile() {
+        // Code pour sauvegarder les données du profil
+        console.log("Enregistrer le profil");
+    }
+
 const saveProfile = () => {
     // Logique pour sauvegarder le profil mis à jour
     console.log({
