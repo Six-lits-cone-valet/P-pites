@@ -17,12 +17,6 @@ const handleAvatarChange = (event) => {
         avatarFile.value = URL.createObjectURL(file);
     }
 };
-
-function saveProfile() {
-        // Code pour sauvegarder les données du profil
-        console.log("Enregistrer le profil");
-    }
-
 const saveProfile = () => {
     // Logique pour sauvegarder le profil mis à jour
     console.log({
@@ -93,7 +87,7 @@ const saveProfile = () => {
                         <label for="favouriteFood">Plat préféré</label>
                         <textarea id="favouriteFood" v-model="favouriteFood"></textarea>
                     </div>
-                    <button type="submit" class="save-button">Enregistrer</button>
+                    <button class="save-button" @click="saveProfile">Enregistrer</button>
                 </form>
 
                 <div class="button logout pointer" @click="$logout">
