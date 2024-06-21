@@ -159,7 +159,7 @@ button.save-button:hover {
 }
 .button.logout {
     background-color: var(--theme-color-account);
-    margin-top: 10px;
+    margin-top: 25px;
 }
 .icon {
     width: 20px;
