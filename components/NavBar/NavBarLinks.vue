@@ -12,6 +12,12 @@ const links = [
         text: "Nos pépites",
         href: "/pepites",
         icon: "eatIn"
+    },
+    {
+        id: 1,
+        text: "Accueil",
+        href: "/",
+        icon: "home"
     }
 ]
 
