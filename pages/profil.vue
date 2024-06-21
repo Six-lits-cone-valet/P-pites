@@ -143,7 +143,7 @@ input, textarea, button {
 }
 
 button.save-button {
-    background-color: var(--theme-color-account);
+    background-color: var(--theme-color-pepite);
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
