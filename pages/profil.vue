@@ -153,8 +153,34 @@ button.save-button:hover {
     background-color: var(--theme-color-account-dark);
 }
 
+.button {
+    padding: 10px 5px;
+    border-radius: 5px;
+}
 .button.logout {
-    margin-top: 20px;
     background-color: var(--theme-color-account);
+}
+.icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+.flex {
+    display: flex;
+}
+.column {
+    flex-direction: column;
+}
+.gap5 {
+    gap: 5px;
+}
+.alignCenter {
+    align-items: center;
+}
+.pointer {
+    cursor: pointer;
+}
+img {
+    width: min(100%, 200px);
 }
 </style>
